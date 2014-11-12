@@ -1,0 +1,33 @@
+en:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Please review the problems below:"
+    labels:
+      user:
+        new:
+          email: "E-mail to sign in"
+          password: "Password"
+          remember_me: "Remember me"
+          password_confirmation: "Password confirmation"
+          pass_length: "characters minimum"
+        edit:
+          email: "E-mail"
+          password: "New password"
+          password_confirmation: "Password confirmation"
+          current_password: "Current password"
+          pass_length: "characters minimum"
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+
+
+
