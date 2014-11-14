@@ -14,12 +14,17 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 
-
-
   protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation) }
+  def after_sign_out_path_for(resource_or_scope)
+    request.referrer
   end
 
+  def after_sign_in_path_for(resource)
+    user_root_path
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :username
+  end
 end

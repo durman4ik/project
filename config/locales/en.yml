@@ -206,4 +206,6 @@ en:
     hello: "Welcome,"
     or: "or"
     home: "Home"
+    profile: "My profile"
+    new_scheme: "Create new scheme"
 

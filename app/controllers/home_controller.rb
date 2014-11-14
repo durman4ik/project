@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
-
-	before_filter :authenticate_user!, :except => [:index, :show]
-
 	def index
-
+		@schemes = Scheme.all
+		@schemes.each { |scheme| p scheme }
 	end
 end

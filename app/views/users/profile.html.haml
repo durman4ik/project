@@ -1,0 +1,31 @@
+%div.my_account
+  %h2 My account
+
+  %p
+  Name: #{current_user.username}
+  %p
+  E-mail: #{current_user.email}
+  %p
+  My role: #{current_user.role}
+
+  %p
+  =link_to "Edit my account", edit_user_registration_path
+
+  -if current_user.role == "admin"
+    =link_to "Добавить схему", new_scheme_path
+
+-if can? :manage, @scheme
+  %div.my_scheme 
+    %h2 All schemes
+    -@schemes.reverse.each do |scheme|
+      = p 
+      = link_to scheme.title, edit_scheme_path(scheme.id)
+      %br
+
+  %div.users
+    %h2 Users
+    -@users.each do |user|
+      = p 
+      =link_to user.email, edit_user_registration_path(user.id)
+      =link_to "DELETE", method: :delete, data: { confirm: 'Are you sure?' }
+      %br 

@@ -8,8 +8,10 @@
 
     - if user_signed_in?
       %span
+      = link_to t("welcome.home"), root_path
+      = link_to t("welcome.profile"), user_root_path
       = t("welcome.hello")
-      = current_user.username
+      = current_user.username   
       = link_to t("devise.registrations.sign_out"), destroy_user_session_path, :method => :delete
     - else
       = link_to t("welcome.home"), root_path
@@ -22,5 +24,6 @@
 
     %p.notice= notice
     %p.alert= alert
-
+    %hr
+    
     =yield

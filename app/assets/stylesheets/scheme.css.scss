@@ -1,0 +1,29 @@
+// Place all the styles related to the Scheme controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.my_account{
+	float: left;
+	margin-left: 15px;
+}
+.my_scheme{
+	float:left;
+	margin-left: 30px;
+}
+
+.users{
+	float: left;
+	margin-left: 30px;
+}
+
+.new_scheme{
+	margin-left: 15px;
+}
+
+.details_list{
+	float:left;
+}
+.details_list#new {
+	float: right;
+	margin-right: 50px;
+}

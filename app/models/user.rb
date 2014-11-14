@@ -1,22 +1,12 @@
 class User < ActiveRecord::Base
+  #mount_uploader :avatar, AvatarUploader
+  has_many :schemes
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  validates :username, presence: true
+
 end
-
-# class User::RegistrationsController < Devise::RegistrationsController
-
-#   before_filter :configure_permitted_parameters
-
-#   protected
-
-#   def configure_permitted_parameters
-#     devise_parameter_sanitizer.for(:sign_up) do |u|
-#       u.permit(:name, :email, :password, :password_confirmation)
-#     end
-
-#   end
-
-# end
