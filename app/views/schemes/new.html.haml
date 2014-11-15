@@ -2,11 +2,11 @@
 	%h2
 	=t("welcome.new_scheme")
 
-	%div.new_scheme 
-	= simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post) do |f|
-		= f.input  :title
-		= f.input  :description, as: :text
-		= f.button :submit, method: :post
+	%div.new_scheme
+		= simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
+			= f.input  :title, html: { class: "form-control" }
+			= f.input  :description, as: :text 
+			= f.button :submit, method: :post
 
 %div.details_list#new
 	%h2 Details list

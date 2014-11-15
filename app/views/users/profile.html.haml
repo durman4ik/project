@@ -13,22 +13,22 @@
   %p
   =link_to "Edit my account", edit_user_registration_path
 
-  -if current_user.role == "admin"
+  -if can? :create, @scheme
     =link_to "Добавить схему", new_scheme_path
 
--if can? :manage, @scheme
+-if can? :create, @scheme
   %div.my_scheme 
     %h2 All schemes
     -@schemes.reverse.each do |scheme|
       = p 
-      = link_to scheme.title, edit_scheme_path(scheme.id)
+      = link_to scheme.title, scheme_path(scheme)
       %br
-
+-if can? :edit, @user
   %div.users
     %h2 Users
     -@users.each do |user|
       = p 
-      =link_to user.email, edit_user_registration_path(user.id)
-      =link_to "DELETE", method: :delete, data: { confirm: 'Are you sure?' }
-      =link_to "Edit user", edit_user_registration_path(user.id)
+      =link_to user.email
+      = link_to "Destroy", admin_destroy_user_path(user), method: :delete, data: { confirm: "You sure?" }
+      =link_to "Edit user"
       %br 

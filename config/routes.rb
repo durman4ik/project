@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
+  get '/:locale' => "home#index"
 
-
-  
   scope "(:locale)", locale: /ru|en/ do
     root to: "home#index"
     get "users/profile", as: 'user_root'
-    devise_for :users
-    resources :schemes  
+    devise_for :users  
+    delete 'users/:id/profile' => 'users#destroy', as: :admin_destroy_user
+    #get 'users/profile/:id/edit' => 'devise/passwords#edit',  as: :admin_edit_user
+    post "markdown/preview"
+    resources :schemes
   end
 
-  get '/:locale' => "home#index"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

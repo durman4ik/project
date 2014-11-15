@@ -16,6 +16,7 @@ gem 'therubyracer',  			platforms: :ruby
 gem 'bootstrap-sass'
 gem 'execjs'
 
+gem "redcarpet"
 gem 'haml'
 gem 'devise'
 gem 'cancancan'
@@ -24,6 +25,8 @@ gem 'thinking-sphinx'
 gem 'rails-i18n'
 gem "carrierwave"
 gem "mini_magick"
+gem "inherited_resources"
+gem "markitup-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

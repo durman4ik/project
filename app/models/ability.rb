@@ -6,7 +6,8 @@ class Ability
     if user.role == "admin"
       can :manage, :all
     elsif user.role == "owner"
-      can :create, @scheme
+      can [:manage], Scheme
+      cannot [:edit, :destroy], User
     else
       can :read, :all
     end

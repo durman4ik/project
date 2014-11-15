@@ -1,4 +1,4 @@
-class SchemesController < ApplicationController
+class SchemesController < InheritedResources::Base
 	before_action :authenticate_user!
 	load_and_authorize_resource
 
@@ -8,9 +8,11 @@ class SchemesController < ApplicationController
 	end
 
 	def create
+		authorize! :create, @scheme
 		@scheme.user_id = current_user.id
 		@scheme.save!
 		redirect_to user_root_path
+
 	end
 
 	def show
@@ -21,6 +23,4 @@ class SchemesController < ApplicationController
 	def scheme_params
 		params.require(:scheme).permit(:title, :description)
 	end
-
-
 end
