@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  #mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, AvatarUploader
   has_many :schemes
 
   # Include default devise modules. Others available are:
@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  validates :username, presence: true
+  validates :username,  presence:   true
+  #validates :avatar,    presence:   true
+                        #integrity:  true,
+                       # processing: true
 
 end

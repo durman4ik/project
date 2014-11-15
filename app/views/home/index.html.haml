@@ -1,6 +1,6 @@
 %h2 Top raited schemes
 
--@schemes.limit(7).each do |scheme|
+-@schemes.limit(7).all.each do |scheme|
   = p
   = link_to "Схема: #{scheme.title}", schemes_path(@scheme)
   %br

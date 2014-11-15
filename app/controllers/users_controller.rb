@@ -8,8 +8,12 @@ class UsersController < ApplicationController
 
   def destroy
   	@user = User.find(params[:id])
-  	@user.destroy
-  	redirect_to "/users/profile"
+  	@user.destroy(:id)
+  	redirect_to user_root_path
+  end
+
+  def edit
+
   end
 
 end

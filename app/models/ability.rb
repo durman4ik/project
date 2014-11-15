@@ -5,6 +5,8 @@ class Ability
     user ||= User.new
     if user.role == "admin"
       can :manage, :all
+    elsif user.role == "owner"
+      can :create, @scheme
     else
       can :read, :all
     end

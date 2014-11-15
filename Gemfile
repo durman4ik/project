@@ -23,6 +23,7 @@ gem 'simple_form'
 gem 'thinking-sphinx'
 gem 'rails-i18n'
 gem "carrierwave"
+gem "mini_magick"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
