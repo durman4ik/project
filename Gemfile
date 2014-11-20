@@ -23,7 +23,7 @@ gem 'cancancan'
 gem 'simple_form'
 gem 'thinking-sphinx'
 gem 'rails-i18n'
-gem "carrierwave"
+gem 'paperclip'
 gem "mini_magick"
 gem "inherited_resources"
 gem "markitup-rails"

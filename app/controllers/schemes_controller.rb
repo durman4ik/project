@@ -7,12 +7,15 @@ class SchemesController < InheritedResources::Base
 		@schemes.each { |scheme| }
 	end
 
+	def new
+		@elements = Element.all
+	end
+
 	def create
 		authorize! :create, @scheme
 		@scheme.user_id = current_user.id
 		@scheme.save!
 		redirect_to user_root_path
-
 	end
 
 	def show

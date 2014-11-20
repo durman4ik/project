@@ -8,6 +8,8 @@ class Ability
     elsif user.role == "owner"
       can [:manage], Scheme
       cannot [:edit, :destroy], User
+    elsif user.role == "visitor"
+      can :read, :all
     else
       can :read, :all
     end

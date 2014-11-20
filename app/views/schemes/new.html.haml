@@ -1,13 +1,31 @@
-%div.details_list
-	%h2
-	=t("welcome.new_scheme")
+.container
+  .new_scheme
+    = simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
+      = f.input  :title, class: "form-control"
+      = f.input  :description, as: :text 
+      = f.button :submit, method: :post
 
-	%div.new_scheme
-		= simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
-			= f.input  :title, html: { class: "form-control" }
-			= f.input  :description, as: :text 
-			= f.button :submit, method: :post
-
-%div.details_list#new
-	%h2 Details list
-
+  %div
+    #1.paint-scheme-form.row
+      .col-md-6
+      %canvas#canvas
+      / canvas  и list_scheme-element обязательно должны находиться в одной col
+      %div.users
+        .ConnectionLines
+          %div Соединительные линии
+          %br/
+          %input.btn-custom.add-line-btn{:type => "button", :value => "Добавить"}/
+          %input.btn-custom.delete-line-btn{:type => "button", :value => "Удалить"}/
+          %input.btn-custom.edit-line-btn{:type => "button", :value => "Редактировать"}/
+        .color-select
+          %label
+            %input.color-selector{:type => "color"}/
+            Цвет элементов
+        .list_scheme-element            
+          - @elements.each do |element|
+            .scheme-element
+              %img#imageid.scheme-element-image{:draggable => "true", :src => element.image.url}/
+              %span.scheme-element-name= element.title
+              %span.scheme-element-count-inputs
+                Соединений:
+                %span.counter= element.num_inputs

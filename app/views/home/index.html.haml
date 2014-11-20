@@ -1,6 +1,11 @@
-%h2 Top raited schemes
+.banner
+  .banner-text
+    %h1 Live programming help available 24/7
+    =button_to "Register", new_user_registration_path, method: :get, class: "btn-home bigger"
+.container
+  %h2 Top raited schemes
 
--@schemes.limit(7).all.each do |scheme|
-  = p
-  = link_to "Схема: #{scheme.title}", schemes_path(@scheme)
-  %br
+  -@schemes.limit(7).all.each do |scheme|
+    = p
+    = link_to "Схема: #{scheme.title}", schemes_path(@scheme)
+    %br

@@ -963,8 +963,8 @@ img {
   border-radius: 50%;
 }
 hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
+/*  margin-top: 20px;
+  margin-bottom: 20px;*/
   border: 0;
   border-top: 1px solid #eee;
 }
@@ -1392,6 +1392,8 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  background: #f1f2f4;
+  
 }
 @media (min-width: 768px) {
   .container {
@@ -4710,10 +4712,9 @@ a.thumbnail.active {
   color: #333;
 }
 .alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
+/*  border: 1px solid transparent;
+  border-radius: 4px;*/
+  color:red;
 }
 .alert h4 {
   margin-top: 0;

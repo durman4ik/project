@@ -1,4 +1,9 @@
 class Scheme < ActiveRecord::Base
-	belongs_to :user
-	validates_presence_of :title, :title
+	
+	validates  :title, presence: true
+  belongs_to :user
+
+  has_many   :constructions
+  has_many   :elements, through: :constructions
+
 end

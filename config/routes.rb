@@ -5,9 +5,14 @@ Rails.application.routes.draw do
     root to: "home#index"
     get "users/profile", as: 'user_root'
     devise_for :users  
+    scope "/admin" do
+      resources :users
+    end
     delete 'users/:id/profile' => 'users#destroy', as: :admin_destroy_user
+    get "users/admin_menu" => "users#admin_menu", as: :admin_menu
     #get 'users/profile/:id/edit' => 'devise/passwords#edit',  as: :admin_edit_user
     post "markdown/preview"
+    resources :elements
     resources :schemes
   end
 

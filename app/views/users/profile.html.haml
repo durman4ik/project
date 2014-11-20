@@ -1,34 +1,33 @@
-%div.my_account
-  %h2 My account
+.container
+  .my_account
+    %h2 My account
 
-  %p
-  Name: #{current_user.username}
-  %p
-  E-mail: #{current_user.email}
-  %p
-  My role: #{current_user.role}
-  %p.avatar
-    %img{:src => current_user.avatar}
+    %p
+    Name: #{current_user.username}
+    %p
+    E-mail: #{current_user.email}
+    %p
+    My role: #{current_user.role}
+    %p.avatar
+      =image_tag current_user.avatar.url(:thumb)
 
-  %p
-  =link_to "Edit my account", edit_user_registration_path
+    %p
+    =link_to "Edit my account", edit_user_registration_path
+
+    -if can? :create, @scheme
+      =link_to "Добавить схему", new_scheme_path
+      %br
+    -if can? :create, @element
+      =link_to "Добавить элемент", new_element_path
 
   -if can? :create, @scheme
-    =link_to "Добавить схему", new_scheme_path
-
--if can? :create, @scheme
-  %div.my_scheme 
-    %h2 All schemes
-    -@schemes.reverse.each do |scheme|
-      = p 
-      = link_to scheme.title, scheme_path(scheme)
-      %br
--if can? :edit, @user
-  %div.users
-    %h2 Users
-    -@users.each do |user|
-      = p 
-      =link_to user.email
-      = link_to "Destroy", admin_destroy_user_path(user), method: :delete, data: { confirm: "You sure?" }
-      =link_to "Edit user"
-      %br 
+    %div.my_scheme 
+      %h2 My schemes
+      -@schemes.reverse.each do |scheme|
+        = p 
+        = link_to scheme.title, scheme_path(scheme)
+        %br
+  -if can? :manage, :all
+    %div.my_scheme
+      %h2 Администрирование
+      =link_to "Администрирование", admin_menu_path

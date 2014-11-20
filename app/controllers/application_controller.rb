@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :set_locale
   before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = exception.message
+    redirect_to root_url
+  end
   
   def set_locale
       I18n.locale = params[:locale] || I18n.default_locale
@@ -25,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [:username, :avatar, :avatar_cache]
-    devise_parameter_sanitizer.for(:account_update) << [:username, :avatar, :avatar_cache]
+    devise_parameter_sanitizer.for(:sign_up) << [:username, :avatar]
+    devise_parameter_sanitizer.for(:account_update) << [:username, :avatar]
   end
 end
