@@ -1,0 +1,15 @@
+.container
+	%h2 Администрирование
+	.users
+		%h2 All users
+		-@users.each do |user|
+			= link_to user.email, user_path(user)
+			= link_to "Delete", admin_destroy_user_path(user), method: :delete, class: "alert", data: { confirm: "Are you sure?" }
+			= link_to "Edit user", edit_user_path(user.id)
+			%hr.my-hr
+	.my_scheme 
+		%h2 All schemes
+		-@schemes.reverse.each do |scheme|
+			= link_to scheme.title, scheme_path(scheme)
+			= link_to "Delete", scheme_path(scheme), method: :delete, class: "alert", data: { confirm: "Are you sure?"}
+			%hr

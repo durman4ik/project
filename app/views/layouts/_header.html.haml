@@ -1,0 +1,11 @@
+%header.top
+	.wrapper
+		%h1.logo
+			%a{:href => root_path} General Electric
+		.ng-scope
+			%nav.nav-menu
+				%ul.menu
+					= render 'devise/shared/registration'
+		%div.messages
+			.notice= notice
+			.alert= alert

@@ -1,0 +1,13 @@
+.container
+  %div.details_list
+    %h2
+    =t("welcome.new_scheme")
+
+    %div.new_scheme
+      = simple_form_for(@element, params[:element] => elements_path, html: {role: 'form' }) do |f|
+        = f.input        :title, class: "form-control"
+        = f.input        :num_inputs
+        / = f.select       :category, Element.uniq.pluck(:category), include_blank: true
+        = f.file_field   :image 
+        = f.button       :submit, method: :post
+

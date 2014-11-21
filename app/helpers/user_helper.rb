@@ -1,4 +1,5 @@
 module UserHelper
+
   def resource_name
     :user
   end
@@ -10,4 +11,5 @@ module UserHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+  
 end

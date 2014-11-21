@@ -117,6 +117,9 @@ ru:
       month: Месяц
       second: Секунд
       year: Год
+  exceptions:
+      access_denied: "Доступ запрещён"
+      access_denied_description: "У вас нет доступа к этой странице. Обратитесь к администратору."
   errors:
     format: ! '%{attribute} %{message}'
     messages:

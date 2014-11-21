@@ -1,0 +1,11 @@
+.container
+  %div
+    = "Название: #{@element.title}" 
+    %br
+    = "Количество выходов: #{@element.num_inputs}"
+    %br
+    = image_tag @element.image.url
+
+  =link_to "Edit", edit_element_path(@element)
+  \|
+  =link_to "Back", user_root_path

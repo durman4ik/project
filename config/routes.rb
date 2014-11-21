@@ -14,7 +14,8 @@ Rails.application.routes.draw do
       resources :users
     end
 
-    match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+    post "/users/base_theme" => "users#current_theme"
+
     get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
     devise_for :users, skip: :omniauth_callbacks, controllers: { passwords: 'passwords', registrations: 'registrations' }
 
@@ -32,9 +33,6 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

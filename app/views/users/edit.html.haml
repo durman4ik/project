@@ -1,0 +1,24 @@
+.container
+  %div.new_scheme
+    %h2
+      Edit User
+    = simple_form_for(:user, url: user_path, method: :put, html: { :role => 'form', :multipart => true}) do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :username, requred: false, placeholder: "Username", class: "form_control"
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %p
+            Currently waiting confirmation for: #{resource.unconfirmed_email}
+        = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
+        = f.input :password_confirmation, required: false
+        = f.input :role, collection: ["visitor", "owner", "admin"], include_blank: false
+        Аватар:
+        %br
+        = image_tag(@user.avatar.url(:medium))
+        = f.file_field :avatar
+
+      %br/
+      .form-actions
+        = f.submit 'Update', :class => 'btn btn-success'
+
+    = link_to "Back", :back

@@ -41,6 +41,11 @@ class UsersController < InheritedResources::Base
     @schemes = Scheme.where(:user_id => params[:id])
   end
 
+  def current_theme
+    current_user.theme || 'base_theme'
+    render current_path
+  end
+
   private
 
     def set_user
@@ -51,9 +56,9 @@ class UsersController < InheritedResources::Base
       if current_user.role == "admin"
         params[:user].delete(:password) if params[:user][:password].blank?
         params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
-        params.require(:user).permit(:username, :role, :email, :avatar, :password, :password_confirmation)
+        params.require(:user).permit(:username, :role, :email, :avatar, :password, :password_confirmation, :theme)
       else
-        params.require(:user).permit(:username, :email, :avatar, :password, :password_confirmation)
+        params.require(:user).permit(:username, :email, :avatar, :password, :password_confirmation, :theme)
       end
     end
 

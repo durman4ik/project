@@ -1,0 +1,27 @@
+.content
+  .top
+    %h1= t("devise.registrations.sign_in")
+  %div.stylized
+    .auth-block
+      .social-login
+        %ul.options
+          %li
+            = link_to "Sign In With Facebook", localized_omniauth_path(:facebook), class: "btn fb"
+          %li
+            = link_to "Sign In With Vkontakte", localized_omniauth_path(:vkontakte), class: "btn vk"
+        %p.or-label
+          %span or
+      = simple_form_for(:user, url: user_session_path, method: :post) do |f|
+        .field.email
+          .target
+            = f.input :email, required: false, autofocus: true, placeholder: "E-mail", label: false
+        .field.password
+          .target
+            = f.input :password, placeholder: "Password", label: false
+        %small.t-right.forgot-password
+          = link_to "Forgot your password?", new_user_password_path
+        .submit-field
+          = f.button :submit, t("devise.registrations.sign_in"), class: "btn bigger full"
+      %small.info
+        Not a user? #{link_to "Create new account", new_user_registration_path}
+        %br/

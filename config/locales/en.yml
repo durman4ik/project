@@ -95,6 +95,9 @@ en:
       month: Month
       second: Seconds
       year: Year
+  exceptions:
+      access_denied: "Access denied"
+      access_denied_description: "You don't have permission to access this page. Contact the administrator."
   errors:
     format: ! '%{attribute} %{message}'
     messages:

@@ -1,0 +1,39 @@
+.content
+  .top
+    %h1= "Редактирование профиля"
+  %div.stylized
+    .auth-block
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:multipart => true, autocomplete: 'off'}) do |f|
+
+        .field.email
+          .target
+            = f.input :username, requred: true, placeholder: "Username", label: false
+        .field.email
+          .target
+            = f.input :email, required: true, autofocus: false, placeholder: "E-mail", label: false, input_html: { :autocomplete => "off" }
+        .field.password
+          .target
+            = f.input :password, placeholder: "New password", label: false, hint: "leave it blank if you don't want to change it", required: false, input_html: { :autocomplete => "off" }
+        .field.password
+          .target
+            = f.input :password_confirmation, required: false, placeholder: "Confirm new password", label: false
+        .field.password
+          .target
+            = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, label: false, placeholder: "Current password"
+        .field.password
+          .target
+            = f.input :theme, label: false, collection: ["base_theme", "dark_theme"], include_blank: false
+        .field
+          = image_tag(current_user.avatar.url(:medium))
+        .field 
+          Заменить аватар
+          = f.file_field :avatar
+        .submit-field
+          = f.button :submit, "Update", class: "btn bigger full"
+        .social-login
+          %p.or-label
+            %span or
+        .submit-field.delete
+          = link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => "btn delete"
+.back
+  = link_to "Back", :back, class: "back"

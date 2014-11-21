@@ -1,0 +1,8 @@
+.container
+  %h3= @scheme.title
+  %p= markdown(@scheme.description)
+
+  -if can? :edit, @scheme
+    = link_to 'Edit', edit_scheme_path(@scheme)
+
+  = link_to 'Back', :back

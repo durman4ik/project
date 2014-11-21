@@ -1,0 +1,17 @@
+.container
+	.my_account
+		%h2= "#{@user.username.capitalize} account"
+		%h3 Info
+		%div
+		Name: #{@user.username}
+		%div
+		E-mail: #{@user.email}
+		%div
+		My role: #{@user.role}
+		%div.avatar Аватар:
+		#{image_tag @user.avatar.url(:thumb)}
+
+		%div
+			%h3= "#{@user.username.capitalize} scheemes"
+			%p="Схем создано: #{@user.schemes.length} "
+			%p=@schemes.map {|scheme| scheme.title }
