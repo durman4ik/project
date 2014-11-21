@@ -5,7 +5,6 @@
 .container
   %h2 Top raited schemes
 
-  -@schemes.limit(7).all.each do |scheme|
-    = p
-    = link_to "Схема: #{scheme.title}", schemes_path(@scheme)
+  -@schemes.each do |scheme|
+    = link_to "Схема: #{scheme.title}", scheme_path(scheme)
     %br

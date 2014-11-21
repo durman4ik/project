@@ -42,6 +42,11 @@ border: 0;
 border-top: 1px solid #eee;
 }
 
+.avatar {
+  width: 150px; 
+  max-height: 150px;
+}
+
 body {
   height: 100%;
   width: 100%;
@@ -59,23 +64,8 @@ h1 {
   vertical-align: baseline;
 }
 
-ul {
-	display: block;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-
-li {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;	
+.help-inline {
+  color: red;
 }
 
 header.top.logo a {
@@ -150,10 +140,6 @@ body header.top {
   z-index: 40;
 }
 
-header.top .logo {
-  float: left;
-  padding: 0px;
-}
 
 body header nav.nav-menu {
   background: none;
@@ -249,122 +235,11 @@ body .wrapper {
   height: inherit;
 }
 
-body .main-content .top {
-margin-bottom: 30px;
-}
-
-body .main-content .content {
-  width: 380px !important;
-  height: auto;
-  padding: 40px;
-  padding-bottom: 80px;
+.auth-block {
+  width: 400px;
   margin: auto;
 }
 
-body .main-content h1, .main-content h3 {
-font-family: 'proximanova_light';
-font: inherit;
-zoom: 1;
-font-weight: normal;
-margin-bottom: 5px;
-color: #4a4f4e;
-line-height: 1.3em;
-}
-
-.social-login {
-clear: both;
-zoom: 1;
-}
-
-.social-login .options {
-  display: table;
-  margin: auto;
-}
-
-.button-fb.fb {
-background: url(/../assets/images/ico_fb_btn.png) no-repeat #4b74ae !important;
-border-bottom: 3px solid #3c5c8a !important;
-background-position: 10px 7px !important;
-padding: 13px 20px 10px;
-padding-left: 43px;
-}
-
-.social-login .options li {
-display: table-cell;
-padding: 0px 10px;
-}
-
-li:first-child {
-padding-left: 0px;
-}
-
-.button-fb {
-font-family: 'proximanova_bold';
-zoom: 1;
-font-weight: normal;
-font-size: 12px;
-color: white !important;
-padding: 10px 20px 7px;
-background: #22c3af;
-border: none;
-line-height: 1em;
--webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
-border-bottom: 3px solid #1a9888;
-cursor: pointer;
-margin: 0px;
-text-decoration: none;
-display: inline-block;
-}
-
-.button-fb.github {
-background: url(/_default/assets/images/ico_github_btn.9641ab8c.png) no-repeat #373737 !important;
-border-bottom: 3px solid #1e1e1e !important;
-background-position: 10px 7px !important;
-padding: 13px 20px 10px;
-padding-left: 43px;
-}
-
-body .main-content p {
-font-family: 'proximanova_regular';
-zoom: 1;
-font-weight: normal;
-font-size: 14px;
-line-height: 1.6em;
-color: #333;
-margin-bottom: 20px;
-}
-
-.social-login .or-label {
-display: block;
-text-align: center;
-margin: 20px 0px !important;
-position: relative;
-}
-
-.social-login .or-label:after {
-content: ' ';
-position: absolute;
-left: 0px;
-top: 11px;
-width: 100%;
-height: 1px;
-background: #DCDCDE;
-}
-
-ol, ul {
-list-style: none;
-}
-
-form.stylized .field {
-position: relative;
-margin-bottom: 15px;
-clear: both;
-font-family: 'proximanova_regular';
-zoom: 1;
-font-weight: normal;
-font-size: 14px;
-line-height: 1.6em;
-margin-bottom: 20px;
+.stylized {
+  padding-top: 30px;
 }

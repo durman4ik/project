@@ -2,25 +2,25 @@
   .my_account
     %h2 My account
 
-    %p
+    %div
     Name: #{current_user.username}
-    %p
+    %div
     E-mail: #{current_user.email}
-    %p
+    %div
     My role: #{current_user.role}
-    %p.avatar
-      =image_tag current_user.avatar.url(:thumb)
+    %div.avatar
+      =image_tag current_user.avatar.url(:medium)
 
-    %p
-    =link_to "Edit my account", edit_user_registration_path
+    %div
+      =link_to "Edit my account", edit_user_registration_path
 
-    -if can? :create, @scheme
+    -if can? :create, Scheme
       =link_to "Добавить схему", new_scheme_path
       %br
-    -if can? :create, @element
+    -if can? :manage, Element
       =link_to "Добавить элемент", new_element_path
 
-  -if can? :create, @scheme
+  -if can? :create, Scheme
     %div.my_scheme 
       %h2 My schemes
       -@schemes.reverse.each do |scheme|

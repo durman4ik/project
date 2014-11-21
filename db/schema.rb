@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117203103) do
+ActiveRecord::Schema.define(version: 20141120131220) do
 
   create_table "constructions", force: true do |t|
     t.integer  "element_id"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20141117203103) do
     t.datetime "updated_at"
     t.string   "category"
   end
+
+  create_table "identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "schemes", force: true do |t|
     t.string   "title"
@@ -67,6 +77,7 @@ ActiveRecord::Schema.define(version: 20141117203103) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

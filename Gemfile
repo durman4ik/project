@@ -27,6 +27,9 @@ gem 'paperclip'
 gem "mini_magick"
 gem "inherited_resources"
 gem "markitup-rails"
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
