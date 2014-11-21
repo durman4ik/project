@@ -5,8 +5,6 @@ class User < ActiveRecord::Base
     :default_url => '/images/:attachment/missing_:style.png'
   validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/]
 
-  # Include default devise modules. Others available are:
-  # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 

@@ -1,0 +1,12 @@
+- if user_signed_in?  
+  = t("welcome.hello")
+  = current_user.username
+  %li.menu-item= link_to t("welcome.profile"), user_root_path
+  %li.menu-item= link_to t("devise.registrations.sign_out"), destroy_user_session_path, :method => :delete
+- else
+  %li.menu-item= link_to t("devise.registrations.sign_in"), new_user_session_path
+  %li.menu-item= link_to t("devise.registrations.sign_up"), new_user_registration_path
+- if I18n.locale == I18n.default_locale
+  %li.menu-item= link_to "English", :locale=>'en'
+- else
+  %li.menu-item= link_to "Русский", :locale=>'ru'

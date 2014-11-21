@@ -22,7 +22,7 @@
             = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, label: false, placeholder: "Current password"
         .field.password
           .target
-            = f.input :theme, label: false, collection: ["base_theme", "dark_theme"], include_blank: false
+            = f.input :theme, label: false, collection: ["Светлая тема", "Темная тема"], include_blank: false
         .field
           = image_tag(current_user.avatar.url(:medium))
         .field 

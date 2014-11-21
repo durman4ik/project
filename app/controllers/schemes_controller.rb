@@ -37,6 +37,7 @@ class SchemesController < InheritedResources::Base
 
 	def destroy
 		authorize! :destroy, @scheme
+		@scheme = Scheme.find(params[:id])
 		if current_user.role == "admin"
 			@scheme.destroy
       flash[:notice] = "Successfully deleted Scheme."

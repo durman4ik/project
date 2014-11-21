@@ -3,8 +3,9 @@
     %h1 Live programming help available 24/7
     =button_to "Register", new_user_registration_path, method: :get, class: "btn-home bigger"
 .container
-  %h2 Top raited schemes
+  -if current_user.nil?
+    = render "visitor_home"
+  -else
+    = render "registred_home"
 
-  -@schemes.each do |scheme|
-    = link_to "Схема: #{scheme.title}", scheme_path(scheme)
-    %br
+= render "layouts/footer"

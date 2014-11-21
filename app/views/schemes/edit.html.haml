@@ -1,6 +1,6 @@
 .container
   .new_scheme
-    = simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
+    = simple_form_for(@scheme, params[:scheme] => schemes_path, html: {role: 'form' }) do |f|
       = f.input  :title, class: "form-control"
       = f.input  :description, as: :text 
       = f.button :submit, method: :post

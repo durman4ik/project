@@ -17,10 +17,6 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 
-  # def current_theme
-  #   current_user.theme || 'base_theme'
-  # end
-
   protected
 
   def after_sign_out_path_for(resource_or_scope)

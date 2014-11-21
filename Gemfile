@@ -30,6 +30,8 @@ gem "markitup-rails"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
+gem 'jquery-turbolinks'
+gem 'letsrate'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

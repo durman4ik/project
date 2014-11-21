@@ -2,19 +2,18 @@
 %html
   %head
     %title General Electric
-    / =stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     -if current_user.nil?
       = stylesheet_link_tag "base_theme", 'data-turbolinks-track' => true
     -else
-      -if current_user.theme == "dark_theme"
+      -if current_user.theme == "Темная тема"
         = stylesheet_link_tag "dark_theme", 'data-turbolinks-track' => true
       -else        
         = stylesheet_link_tag "base_theme", 'data-turbolinks-track' => true
       =csrf_meta_tags
-      =javascript_include_tag 'application', 'data-turbolinks-track' => true
+      
 
 
   = render 'layouts/header'
   %section.main-content
     = yield
-  / = render "layouts/footer"
+    =javascript_include_tag 'application', 'data-turbolinks-track' => true
