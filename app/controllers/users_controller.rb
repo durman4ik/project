@@ -3,7 +3,6 @@ class UsersController < InheritedResources::Base
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def profile
-    @schemes = Scheme.where(:user_id => current_user.id)
     @users = User.all
   end
 
@@ -38,12 +37,7 @@ class UsersController < InheritedResources::Base
   end
 
   def show
-    @schemes = Scheme.where(:user_id => params[:id])
-  end
-
-  def current_theme
-    current_user.theme || 'base_theme'
-    render current_path
+    @schemes = Scheme.where(:user_id => params[:id]).paginate(:page => params[:page], :per_page => 9)
   end
 
   private

@@ -45,15 +45,7 @@ border-top: 1px solid #eee;
 .avatar {
   width: 150px; 
   max-height: 150px;
-}
-
-.btn.delete {
-  background: red;
-  margin-bottom: 60px;
-}
-
-.btn.delete:hover {
-  background: rgb(182, 10, 10);
+  overflow: hidden;
 }
 
 .back {
@@ -259,4 +251,180 @@ body .wrapper {
 
 .stylized {
   padding-top: 30px;
+}
+
+.text .optional {
+  min-height: 400px;
+  min-width: 200px;
+}
+
+form.rating_ballot input.rating_submit { display: none; }
+form.rating_ballot input.rating_button { display: none; }
+
+form.rating_ballot label.rating { cursor: pointer; display: block; height: 20px; width: 20px; float: left; }
+form.rating_ballot label.rating span { display: none; }
+form.rating_ballot label.rating { background-image: url(../images/rating/star-dim.png); }
+form.rating_ballot label.rating.bright { background-image: url(../images/rating/star-bright.png); }
+form.rating_ballot label.rating.glow { background-image: url(../images/rating/star-glow.png); }
+
+ul.home-page {
+  list-style: none;
+  display: inline-flex;
+  width: 1100px;
+}
+
+li.home-page{
+  display: inherit;
+}
+
+article.expert.home-all-post {
+  border:double;
+  border-color: darkgray;
+  border-radius: 100px;
+}
+
+img.attachment-user-thumbnail-normal.wp-post-image.home-page-down {
+  height: 130px;
+  width: auto;
+  border-radius: 30px;
+}
+
+h1.home-page {
+  font-size: 26px;
+  padding-bottom: 20px;
+  color: grey;
+  text-decoration: underline;
+}
+div.container.home-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn.delete {
+  background: red;
+  margin-bottom: 60px;
+}
+
+.btn.delete:hover {
+  background: rgb(182, 10, 10);
+}
+
+.btn.edit {
+  background: rgb(219, 162, 13);
+}
+
+.btn.edit:hover {
+  background: #C58F03;
+}
+
+.btn.add {
+  background: #22C386;
+}
+
+.btn.add:hover {
+  background: #24B287;
+}
+
+img.profile-avatar {
+    width: 150px;
+}
+
+.container.admin{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+div.admin-blocks {
+  display: flex;
+  flex-direction: row;
+}
+
+h1.admin-panel {
+  font-size: 20px;
+  padding-bottom: 10px;
+  color: rgb(69, 178, 169);
+}
+
+.admin-links {
+  padding-left: 15px;
+}
+
+div.admin-links.users {
+  display: flex;
+  flex-direction: column;
+}
+div.users {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 400px;
+}
+
+div.all-scheme {
+  border-left: 1px dotted rgb(200, 200, 200);
+  padding-left: 10px;
+  margin-left: 8px;
+  width: 400px;
+}
+
+div.all-elements {
+  width: 400px;
+  border-left: 1px dotted rgb(200, 200, 200);
+  padding-left: 10px;
+  margin-left: 8px;
+}
+
+div.all-user-links {
+  display: flex;
+}
+
+div.admin-user-email-link {
+  display: flex;
+  flex-basis: 290px;
+}
+
+div.admin-user-email-link a {
+  text-decoration: none;
+}
+
+div.admin-user-delete-link {
+  display: flex;
+  flex-basis: 50px;
+}
+div.admin-user-delete-link a {
+  color: red;
+}
+
+div.admin-user-delete-link a:hover {
+  color: rgb(155, 35, 35);
+  text-decoration: none;
+}
+
+div.admin-user-edit-link a {
+  color: #7D8413;
+}
+
+div.admin-user-edit-link a:hover {
+  color: #51560B;
+  text-decoration: none;
+}
+
+div.admin-links.users.schemes {
+  display: flex;
+  flex-direction: column;
+}
+
+div.admin-user-email-link.scheme {
+  display: flex;
+  flex-basis: 270px;
+}
+
+div.admin-user-email-link.element {
+  display: flex;
+}
+
+hr.admin-hr {
+  border-bottom: 1px dotted grey
 }

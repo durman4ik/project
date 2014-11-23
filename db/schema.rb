@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121094559) do
+ActiveRecord::Schema.define(version: 20141123002817) do
 
   create_table "constructions", force: true do |t|
     t.integer  "element_id"
@@ -45,13 +45,22 @@ ActiveRecord::Schema.define(version: 20141121094559) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "ratings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "scheme_id"
+    t.decimal  "value",      precision: 11, scale: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "schemes", force: true do |t|
     t.string   "title"
     t.string   "description"
-    t.integer  "rating",      default: 0, null: false
+    t.float    "rating",            limit: 24, default: 0.0
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "short_description"
   end
 
   create_table "users", force: true do |t|

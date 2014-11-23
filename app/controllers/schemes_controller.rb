@@ -48,7 +48,7 @@ class SchemesController < InheritedResources::Base
 	private
 
 		def scheme_params
-			params.require(:scheme).permit(:title, :description)
+			params.require(:scheme).permit(:title, :description, :short_description, :rating)
 		end
 
 end

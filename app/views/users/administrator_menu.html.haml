@@ -1,15 +1,42 @@
-.container
-	%h2 Администрирование
-	.users
-		%h2 All users
-		-@users.each do |user|
-			= link_to user.email, user_path(user)
-			= link_to "Delete", admin_destroy_user_path(user), method: :delete, class: "alert", data: { confirm: "Are you sure?" }
-			= link_to "Edit user", edit_user_path(user.id)
-			%hr.my-hr
-	.my_scheme 
-		%h2 All schemes
-		-@schemes.reverse.each do |scheme|
-			= link_to scheme.title, scheme_path(scheme)
-			= link_to "Delete", scheme_path(scheme), method: :delete, class: "alert", data: { confirm: "Are you sure?"}
-			%hr
+.container.admin
+	%h1.home-page Администрирование
+	.admin-blocks
+		.users
+			%h1.admin-panel All users
+			.admin-links.users
+				-@users.each do |user|
+					.all-user-links
+						.admin-user-email-link
+							= link_to user.email, user_path(user)
+						.admin-user-delete-link
+							= link_to "Delete", admin_destroy_user_path(user), method: :delete, data: { confirm: "Are you sure?" }
+						.admin-user-edit-link
+							= link_to "Edit", edit_user_path(user.id)
+					%div	
+						%hr.admin-hr
+		.all-scheme 
+			%h1.admin-panel All schemes
+			.admin-links.users.schemes
+				-@schemes.reverse.each do |scheme|
+					.all-user-links
+						.admin-user-email-link.scheme
+							= link_to scheme.title, scheme_path(scheme)
+						.admin-user-delete-link
+							= link_to "Delete", scheme_path(scheme), method: :delete, class: "alert", data: { confirm: "Are you sure?"}
+						.admin-user-edit-link
+							= link_to "Edit", edit_scheme_path(scheme.id)
+					%div	
+						%hr.admin-hr
+		.all-elements
+			%h1.admin-panel All elements
+			.admin-links.users.schemes
+				-@schemes.reverse.each do |scheme|
+					.all-user-links
+						.admin-user-email-link.element
+							= link_to scheme.title, scheme_path(scheme)
+						.admin-user-delete-link
+							= link_to "Delete", scheme_path(scheme), method: :delete, class: "alert", data: { confirm: "Are you sure?"}
+						.admin-user-edit-link
+							= link_to "Edit", edit_scheme_path(scheme.id)
+					%div	
+						%hr.admin-hr

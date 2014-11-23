@@ -1,6 +1,41 @@
+div.container.profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 .my_account{
-	float: left;
-	margin-left: 15px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 230px;
+}
+div.my-file {
+    font-family: cursive;
+}
+
+div.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+div.account-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 150px;
+}
+
+div.account-buttons .btn {
+    margin-top: 3px;
+    font-family: sans-serif;
+}
+
+article.expert.home-all-post.profile {
+    width: 220px;
+    border-radius: 20px;
 }
 
 .my_scheme{

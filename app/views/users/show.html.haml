@@ -1,15 +1,12 @@
 .container
 	.my_account
 		%h2= "#{@user.username.capitalize} account"
-		%h3 Info
-		%div
-		Name: #{@user.username}
-		%div
-		E-mail: #{@user.email}
-		%div
-		My role: #{@user.role}
-		%div.avatar Аватар:
-		#{image_tag @user.avatar.url(:thumb)}
+		%div.my-file
+			%p Name: #{@user.username}
+			%p E-mail: #{@user.email}
+			%p My role: #{@user.role}
+		%div.avatar
+			=image_tag @user.avatar.url(:medium), class: "profile-avatar"
 
 		%div
 			%h3= "#{@user.username.capitalize} scheemes"

@@ -10,10 +10,10 @@
       -else        
         = stylesheet_link_tag "base_theme", 'data-turbolinks-track' => true
       =csrf_meta_tags
-      
-
+      =javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = yield :scripts
 
   = render 'layouts/header'
   %section.main-content
     = yield
-    =javascript_include_tag 'application', 'data-turbolinks-track' => true
+    

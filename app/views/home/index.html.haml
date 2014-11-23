@@ -2,10 +2,7 @@
   .banner-text
     %h1 Live programming help available 24/7
     =button_to "Register", new_user_registration_path, method: :get, class: "btn-home bigger"
-.container
-  -if current_user.nil?
-    = render "visitor_home"
-  -else
-    = render "registred_home"
+.container.home-page
+  =render "home_page"
 
 = render "layouts/footer"

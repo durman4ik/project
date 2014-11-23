@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   def markdown(text)
     renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
     options = {
@@ -11,6 +12,10 @@ module ApplicationHelper
         space_after_headers: true
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+  end
+
+  def if_admin?
+    current_user.role == "admin" unless current_user.nil?
   end
 
 end

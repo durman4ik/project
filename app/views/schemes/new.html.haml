@@ -2,7 +2,8 @@
   .new_scheme
     = simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
       = f.input  :title, class: "form-control"
-      = f.input  :description, as: :text 
+      = f.input  :short_description, as: :text
+      = f.input  :description, as: :text, class: "description"
       = f.button :submit, method: :post
 
   %div

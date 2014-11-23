@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+
   get '/:locale' => "home#index"
 
-  devise_for :users, skip: [:session, :password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
-
+  devise_for :users, skip: [:session, :password, :registration, :confirmation], 
+              controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   scope "(:locale)", locale: /ru|en/ do
 
@@ -17,15 +18,15 @@ Rails.application.routes.draw do
     post "/users/base_theme" => "users#current_theme"
 
     get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
-    devise_for :users, skip: :omniauth_callbacks, controllers: { passwords: 'passwords', registrations: 'registrations' }
+    devise_for :users, skip: :omniauth_callbacks, 
+                controllers: { passwords: 'passwords', registrations: 'registrations' }
 
     delete 'users/:id/profile' => 'users#destroy', as: :admin_destroy_user
     get "users/admin_menu" => "users#admin_menu", as: :admin_menu
 
-    post "markdown/preview"
-
     resources :elements
     resources :schemes
+    resources :ratings
 
   end
 

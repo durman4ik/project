@@ -1,33 +1,38 @@
-.container
-  .my_account
-    %h2 My account
+.container.profile
+  %section.my_account
+    %div.profile
+      %h1.home-page MY ACCOUNT
+      %div.my-file
+        %p Name: #{current_user.username}
+        %p E-mail: #{current_user.email}
+        %p My role: #{current_user.role}
+      %div.avatar
+        =image_tag current_user.avatar.url(:medium), class: "profile-avatar"
 
-    %div
-    Name: #{current_user.username}
-    %div
-    E-mail: #{current_user.email}
-    %div
-    My role: #{current_user.role}
-    %div.avatar
-      =image_tag current_user.avatar.url(:medium)
-
-    %div
-      =link_to "Edit my account", edit_user_registration_path
-
-    -if can? :create, Scheme
-      =link_to "Добавить схему", new_scheme_path
-      %br
-    -if can? :manage, Element
-      =link_to "Добавить элемент", new_element_path
+      %div.account-buttons
+        =link_to "Edit my account", edit_user_registration_path, class: "btn edit"
+        -if can? :create, Scheme
+          =link_to "Добавить схему", new_scheme_path, class: "btn add"
+        -if can? :manage, Element
+          =link_to "Добавить элемент", new_element_path, class: "btn add"
+        -if can? :manage, :all  
+          =link_to "Администрирование", admin_menu_path, class: "btn delete"
 
   -if can? :create, Scheme
-    %div.my_scheme 
-      %h2 My schemes
-      -@schemes.reverse.each do |scheme|
-        = p 
-        = link_to scheme.title, scheme_path(scheme)
-        %br
-  -if can? :manage, :all
-    %div.my_scheme
-      %h2 Администрирование
-      =link_to "Администрирование", admin_menu_path
+               
+    %section.cases   
+      %h1.home-page MY SCHEMES
+      -unless current_user.schemes.length == 0
+        -current_user.schemes.each do |scheme|
+          %article.expert.home-all-post.profile
+            = link_to scheme.title, scheme_path(scheme), class: "title"
+            %p.subtitle 
+              Рейтинг: #{scheme.average_rating}
+              %br
+              = "Голосов: #{scheme.ratings.length}"
+            %img.attachment-user-thumbnail-normal.wp-post-image.home-page-down{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
+            .entry-content
+              %div.home_posts
+                = scheme.short_description
+      -else
+        Вы еще не создали ни одной схемы

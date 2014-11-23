@@ -1,19 +1,25 @@
 class User < ActiveRecord::Base
-  has_many :schemes
+
+  TEMP_EMAIL_PREFIX = 'change@me'
+  TEMP_EMAIL_REGEX = /\Achange@me/
+  
   has_attached_file :avatar, 
     :styles => { medium: "150x150>", thumb: "50x50>" },
     :default_url => '/images/:attachment/missing_:style.png'
+  
   validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/]
+
+  validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+
+  validates :username,  presence:   true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
-  validates :username,  presence:   true
+  has_many :schemes
 
-  TEMP_EMAIL_PREFIX = 'change@me'
-  TEMP_EMAIL_REGEX = /\Achange@me/
-
-  validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  has_many :ratings
+  has_many :rated_schemes, :through => :ratings, :source => :scheme
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist

@@ -1,8 +1,16 @@
 .container
+  = Time.now
   %h3= @scheme.title
   %p= markdown(@scheme.description)
+  %p Рейтинг: #{@scheme.average_rating}
+  -if user_can_voted? || if_admin?
+    =render "rating_form"
 
   -if can? :edit, @scheme
     = link_to 'Edit', edit_scheme_path(@scheme)
 
-  = link_to 'Back', :back
+= link_to 'Back', :back
+
+- content_for(:scripts) do
+  = javascript_include_tag "jquery-2.1.1.min", 'data-turbolinks-track' => true
+  = javascript_include_tag "index", 'data-turbolinks-track' => true
