@@ -9,15 +9,11 @@ module SchemeHelper
   end
 
   def current_user_rating
-    if @rating = current_user.ratings.find_by_scheme_id(params[:id])
-        @rating.value
-    else
-        "N/A"
-    end
+      "Ваша оценка: (#{@rating.value})" if @rating = current_user.ratings.find_by_scheme_id(params[:id])
   end
 
   def user_can_voted?
-    current_user.ratings.find_by_scheme_id(params[:id]).nil? || if_admin? unless current_user.nil?
+    (current_user.ratings.find_by_scheme_id(params[:id]).nil? && current_user.id != @scheme.user_id) || if_admin? unless current_user.nil?
   end
 
 end

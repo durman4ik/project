@@ -55,12 +55,12 @@ ActiveRecord::Schema.define(version: 20141123002817) do
 
   create_table "schemes", force: true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.float    "rating",            limit: 24, default: 0.0
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "short_description"
+    t.string   "short_description"
   end
 
   create_table "users", force: true do |t|

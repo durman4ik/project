@@ -1,7 +1,7 @@
 class AddThemeToUser < ActiveRecord::Migration
   def up
     add_column :users, :theme, :string
-    add_column :schemes, :short_description, :text 
+    add_column :schemes, :short_description, :string
   end
 
   def down

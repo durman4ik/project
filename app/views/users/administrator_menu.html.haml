@@ -22,7 +22,7 @@
 						.admin-user-email-link.scheme
 							= link_to scheme.title, scheme_path(scheme)
 						.admin-user-delete-link
-							= link_to "Delete", scheme_path(scheme), method: :delete, class: "alert", data: { confirm: "Are you sure?"}
+							= link_to "Delete", scheme_path(scheme), method: :delete, data: { confirm: "Are you sure?"}
 						.admin-user-edit-link
 							= link_to "Edit", edit_scheme_path(scheme.id)
 					%div	
@@ -30,13 +30,13 @@
 		.all-elements
 			%h1.admin-panel All elements
 			.admin-links.users.schemes
-				-@schemes.reverse.each do |scheme|
+				-@elements.reverse.each do |element|
 					.all-user-links
 						.admin-user-email-link.element
-							= link_to scheme.title, scheme_path(scheme)
+							= link_to element.title, element_path(element)
 						.admin-user-delete-link
-							= link_to "Delete", scheme_path(scheme), method: :delete, class: "alert", data: { confirm: "Are you sure?"}
+							= link_to "Delete", element_path(element), method: :delete, data: { confirm: "Are you sure?"}
 						.admin-user-edit-link
-							= link_to "Edit", edit_scheme_path(scheme.id)
+							= link_to "Edit", edit_element_path(element.id)
 					%div	
 						%hr.admin-hr

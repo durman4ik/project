@@ -1,10 +1,8 @@
 class SchemesController < InheritedResources::Base
 
 	def index
-		authorize! :read, @scheme
-		@users = Users.all
-		@schemes = Scheme.where(:user_id => current_user.id)
-		@schemes.each { |scheme| }
+		authorize! :read, @scheme 
+		@schemes = Scheme.search params[:search]
 	end
 
 	def edit
@@ -22,7 +20,13 @@ class SchemesController < InheritedResources::Base
 		@scheme = Scheme.new(scheme_params)
 		@scheme.user_id = current_user.id
 		@scheme.save!
-		redirect_to user_root_path
+		if @scheme.errors.empty?
+			redirect_to user_root_path
+			flash[:notice] = "Схема #{@scheme.title} успешно создана"
+		else 
+			flash[:alert] = "@scheme.error"
+			render "new"
+		end
 		authorize! :create, @scheme
 	end
 

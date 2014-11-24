@@ -18,6 +18,7 @@ class UsersController < InheritedResources::Base
     authorize! :manage, :all
     @users = User.all
     @schemes = Scheme.all
+    @elements = Element.all
     render "users/administrator_menu"
   end
 
