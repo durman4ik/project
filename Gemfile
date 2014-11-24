@@ -29,11 +29,11 @@ gem "mini_magick"
 
 gem 'thinking-sphinx'
 gem 'will_paginate'
-
+gem 'mysql2'
 gem 'sdoc', '~> 0.4.0',           group: :doc
 
 group :development, :test do
-  gem 'mysql2'
+
 	gem "spring"
   gem "better_errors"
   gem "pry"
