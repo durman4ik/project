@@ -48,7 +48,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: sites_production
-  username: sites
-  password: <%= ENV['SITES_DATABASE_PASSWORD'] %>
+  url: <%= ENV['postgres://vglixrdyaiuubr:s6LR6Rx_YaI5ax1kZ7hSPJ4nP3@ec2-54-83-5-151.compute-1.amazonaws.com:5432/d25ebm91cgi65i'] %>
+  adapter: postgresql
+  encoding: unicode
+  database: d25ebm91cgi65i
+  pool: 5
+  username: vglixrdyaiuubr
+  password: s6LR6Rx_YaI5ax1kZ7hSPJ4nP3
