@@ -1,18 +1,19 @@
 %h1.home-page TOP RATED SCHEMES
 %section.cases
   %ul.home-page
-    -@top_schemes.limit(5).order(:rating).reverse_order.each do |scheme|
-      %li.home-page
-        %article.expert
-          = link_to scheme.title, scheme_path(scheme), class: "title"
-          %p.subtitle 
-            = "Автор: #{scheme.user.username}"
-            %br
-            Рейтинг: #{scheme.average_rating}
-          %img.attachment-user-thumbnail-normal.wp-post-image{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
-          .entry-content
-            %div.home_posts
-              = scheme.short_description
+    -unless @top_schemes.nil?
+      -@top_schemes.limit(5).order(:rating).reverse_order.each do |scheme|
+        %li.home-page
+          %article.expert
+            = link_to scheme.title, scheme_path(scheme), class: "title"
+            %p.subtitle 
+              = "Автор: #{scheme.user.username}"
+              %br
+              Рейтинг: #{scheme.average_rating}
+            %img.attachment-user-thumbnail-normal.wp-post-image{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
+            .entry-content
+              %div.home_posts
+                = scheme.short_description
 %hr 
 %h1.home-page All SCHEMES
 = "Всего схем: #{scheme_quantity}"  
