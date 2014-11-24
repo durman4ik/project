@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
+ruby '2.1.4'
 
 gem 'rails', '4.1.7'
-
-gem 'mysql2'
 
 gem 'therubyracer',             platforms: :ruby
 gem 'sass-rails', '~> 4.0.3'
@@ -34,7 +33,13 @@ gem 'will_paginate'
 gem 'sdoc', '~> 0.4.0',           group: :doc
 
 group :development do
+  gem 'mysql2'
 	gem "spring"
   gem "better_errors"
   gem "pry"
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
