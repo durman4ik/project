@@ -65,11 +65,11 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: config.app_domain }
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com', 
+    address: 'smtp.sendgrid.net', 
     port: '587',
     enable_starttls_auto: true,
-    user_name: 'dmtcustoms@gmail.com',
-    password: '123qazwsxedc123',
+    user_name: 'Durman4ik',
+    password: 'Dumanik13',
     authentication: :plain,
     domain: 'https://fastscheme.herokuapp.com'
   }
