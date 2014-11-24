@@ -32,7 +32,7 @@ gem 'will_paginate'
 
 gem 'sdoc', '~> 0.4.0',           group: :doc
 
-group :development do
+group :development, :test do
   gem 'mysql2'
 	gem "spring"
   gem "better_errors"
@@ -41,6 +41,5 @@ end
 
 group :production do
   gem 'pg'
-  gem 'activerecord-postgresql-adapter'
   gem 'rails_12factor'
 end
