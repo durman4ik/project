@@ -14,6 +14,7 @@
 							= link_to "Edit", edit_user_path(user.id)
 					%div	
 						%hr.admin-hr
+		= will_paginate @users				
 		.all-scheme 
 			%h1.admin-panel All schemes
 			.admin-links.users.schemes
@@ -27,6 +28,7 @@
 							= link_to "Edit", edit_scheme_path(scheme.id)
 					%div	
 						%hr.admin-hr
+		= will_paginate @schemes				
 		.all-elements
 			%h1.admin-panel All elements
 			.admin-links.users.schemes
@@ -40,3 +42,4 @@
 							= link_to "Edit", edit_element_path(element.id)
 					%div	
 						%hr.admin-hr
+		= will_paginate @elements				

@@ -4,7 +4,7 @@ class UsersController < InheritedResources::Base
 
   def profile
     @users = User.all
-    @schemes = Scheme.where(:user_id => current_user.id).includes(:ratings, :user)
+    @schemes = Scheme.where(user_id: current_user.id).includes(:ratings, :user)
   end
 
   def destroy
@@ -17,9 +17,9 @@ class UsersController < InheritedResources::Base
 
   def admin_menu
     authorize! :manage, :all
-    @users = User.all
-    @schemes = Scheme.all
-    @elements = Element.all
+    @users = User.paginate(page: params[:page], per_page: 10)
+    @schemes = Scheme.paginate(page: params[:page], per_page: 10)
+    @elements = Element.paginate(page: params[:page], per_page: 10)
     render "users/administrator_menu"
   end
 
@@ -30,7 +30,7 @@ class UsersController < InheritedResources::Base
       flash[:notice] = "Successfully updated User."
       redirect_to admin_menu_path
     else
-      render :action => 'edit'
+      render action: 'edit'
     end    
   end
 
@@ -39,7 +39,7 @@ class UsersController < InheritedResources::Base
   end
 
   def show
-    @schemes = Scheme.where(:user_id => params[:id]).paginate(:page => params[:page], :per_page => 9)
+    @schemes = Scheme.where(user_id: params[:id]).paginate(page: params[:page], per_page: 9)
   end
 
   private

@@ -2,10 +2,6 @@ class SchemesController < InheritedResources::Base
 
 	before_filter :set_params_scheme, only: [:edit, :show, :destroy]
 
-	def index
-		authorize! :read, @scheme 
-	end
-
 	def edit
 		authorize! :edit, @scheme
 	end
@@ -44,7 +40,11 @@ class SchemesController < InheritedResources::Base
 	end
 
 	def search
-			@schemes = Scheme.search params[:search], :include => [:user, :ratings], :match_mode => :boolean
+			@schemes = Scheme.search(params[:search], :sql => {:include => [:user, :ratings]},
+                             										:ranker => :bm25,
+                             										:match_mode => :any,
+                             										:page => params[:page],
+																								:per_page => 10)
 	end
 
 	private

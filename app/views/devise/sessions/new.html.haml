@@ -14,7 +14,7 @@
       = simple_form_for(:user, url: user_session_path, method: :post) do |f|
         .field.email
           .target
-            = f.input :email, required: false, autofocus: true, placeholder: "E-mail", label: false
+            = f.input :login, required: false, autofocus: true, placeholder: "E-mail or Username", label: false
         .field.password
           .target
             = f.input :password, placeholder: "Password", label: false
