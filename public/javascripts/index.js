@@ -4,21 +4,18 @@ $(function () {
 });
 
 $(document).ready(function() {
-    // Makes stars glow on hover.
     $('form.rating_ballot > label').hover(
-        function() {    // mouseover
+        function() {
             $(this).prevAll().andSelf().addClass('glow');
-        },function() {  // mouseout
+        },function() {
             $(this).siblings().andSelf().removeClass('glow');
     });
 
-    // Makes stars stay glowing after click.
     $('form.rating_ballot > label').click(function() {
         $(this).siblings().removeClass("bright");
         $(this).prevAll().andSelf().addClass("bright");
     });
 
-    // Submits the form (saves data) after user makes a change.
     $('form.rating_ballot').change(function() {
         $('form.rating_ballot').submit();
     });

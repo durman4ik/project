@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.4'
 
 gem 'rails', '4.1.7'
-
+gem 'mysql2'
 gem 'therubyracer',             platforms: :ruby
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
@@ -29,7 +29,7 @@ gem "mini_magick"
 
 gem 'thinking-sphinx'
 gem 'will_paginate'
-gem 'mysql2'
+
 gem 'sdoc', '~> 0.4.0',           group: :doc
 
 group :development, :test do

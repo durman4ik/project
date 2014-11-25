@@ -17,8 +17,10 @@ class Scheme < ActiveRecord::Base
         @value += rating.value
     end
     @total = self.ratings.size
-    unless @value == 0
-      self.rating = @value.to_f / @total.to_f  
+    unless @value.zero?
+      rating = @value.to_f / @total.to_f
+      self.update(:rating => rating) if rating != self.rating
+      rating
     else 
       "0"
     end

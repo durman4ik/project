@@ -1,12 +1,13 @@
 class SchemesController < InheritedResources::Base
 
+	before_filter :set_params_scheme, only: [:edit, :show, :destroy]
+
 	def index
 		authorize! :read, @scheme 
 		@schemes = Scheme.search params[:search]
 	end
 
 	def edit
-		@scheme = Scheme.find(params[:id])
 		authorize! :edit, @scheme
 	end
 
@@ -31,7 +32,6 @@ class SchemesController < InheritedResources::Base
 	end
 
 	def show
-		@scheme = Scheme.find(params[:id])
 		if current_user.nil?
 			@schemes = Scheme.all
 		else
@@ -41,7 +41,6 @@ class SchemesController < InheritedResources::Base
 
 	def destroy
 		authorize! :destroy, @scheme
-		@scheme = Scheme.find(params[:id])
 		if current_user.role == "admin"
 			@scheme.destroy
       flash[:notice] = "Successfully deleted Scheme."
@@ -50,6 +49,10 @@ class SchemesController < InheritedResources::Base
 	end
 
 	private
+
+		def set_params_scheme
+			@scheme = Scheme.find(params[:id])
+		end
 
 		def scheme_params
 			params.require(:scheme).permit(:title, :description, :short_description, :rating)

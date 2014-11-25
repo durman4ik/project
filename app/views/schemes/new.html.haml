@@ -1,27 +1,84 @@
 .container
   .new_scheme
-    = simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
-      = f.input  :title, class: "form-control"
-      = f.input  :short_description, as: :text
-      = f.input  :description, as: :text, class: "description"
-      = f.button :submit, method: :post
 
-  %div
-    #1.paint-scheme-form.row
-      .col-md-6
+  #1.paint-scheme-form
+  = simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
+    .flexRow
+      %div
+        = f.input  :title, class: "form-control"
+        = f.input  :short_description, as: :text
+      .ConnectionLines
+        %div Соединительные линии
+        %br/
+        %input.btn-custom.add-line-btn{:type => "button", :value => "Добавить"}/
+        %input.btn-custom.delete-line-btn{:type => "button", :value => "Удалить"}/
+        %input.btn-custom.edit-line-btn{:type => "button", :value => "Редактировать"}/
+      .color-select
+        %label
+          %input.color-selector{:type => "color"}/
+          Цвет элементов
+    .flexRow
+      .property-block
+        %h2.menu-header Свойства элементов
+        .scheme-element-properties
+          %h3.user-element-name Мой элемент на схеме
+          %p.element-name Источник ЭДС
+          %p.count-connections
+            Кол-в соединений:
+            %span.counter 3
+          %ul.properties-list
+            %li
+              %label
+                Сопротивление:
+                %input{:size => "10", :type => "text", :value => "10 ОМ"}/
+            %li
+              %label
+                Индукимвность:
+                %input{:size => "10", :type => "text", :value => "2 чего-то"}/
+            %li
+              %label
+                Макс. напряжение:
+                %input{:size => "10", :type => "text", :value => "220 в"}/
+        .scheme-element-properties
+          %h3.user-element-name Мой второй элемент на схеме
+          %p.element-name Источник ЭДС
+          %p.count-connections
+            Кол-в соединений:
+            %span.counter 3
+          %ul.properties-list
+            %li
+              %label
+                Сопротивление:
+                %input{:size => "10", :type => "text", :value => "10 ОМ"}/
+            %li
+              %label
+                Индукимвность:
+                %input{:size => "10", :type => "text", :value => "2 чего-то"}/
+            %li
+              %label
+                Макс. напряжение:
+                %input{:size => "10", :type => "text", :value => "220 в"}/
+        .scheme-element-properties
+          %h3.user-element-name Ну и так далее...
+          %p.element-name Источник ЭДС
+          %p.count-connections
+            Кол-в соединений:
+            %span.counter 3
+          %ul.properties-list
+            %li
+              %label
+                Сопротивление:
+                %input{:size => "10", :type => "text", :value => "10 ОМ"}/
+            %li
+              %label
+                Индукимвность:
+                %input{:size => "10", :type => "text", :value => "2 чего-то"}/
+            %li
+              %label
+                Макс. напряжение:
+                %input{:size => "10", :type => "text", :value => "220 в"}/
       %canvas#canvas
-      / canvas  и list_scheme-element обязательно должны находиться в одной col
       %div.users
-        .ConnectionLines
-          %div Соединительные линии
-          %br/
-          %input.btn-custom.add-line-btn{:type => "button", :value => "Добавить"}/
-          %input.btn-custom.delete-line-btn{:type => "button", :value => "Удалить"}/
-          %input.btn-custom.edit-line-btn{:type => "button", :value => "Редактировать"}/
-        .color-select
-          %label
-            %input.color-selector{:type => "color"}/
-            Цвет элементов
         .list_scheme-element            
           - @elements.each do |element|
             .scheme-element
@@ -30,6 +87,10 @@
               %span.scheme-element-count-inputs
                 Соединений:
                 %span.counter= element.num_inputs
+    .description-scheme
+      = f.input  :description, as: :text
+      = f.button :submit, method: :post
 
 - content_for(:scripts) do
   = javascript_include_tag "SchemeDesigner"
+
