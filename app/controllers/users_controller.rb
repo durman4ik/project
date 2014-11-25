@@ -4,6 +4,7 @@ class UsersController < InheritedResources::Base
 
   def profile
     @users = User.all
+    @schemes = Scheme.where(:user_id => current_user.id).includes(:ratings, :user)
   end
 
   def destroy

@@ -5,11 +5,11 @@ class Scheme < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many   :constructions
+  has_many   :constructions, dependent: :destroy
   has_many   :elements, through: :constructions
 
-  has_many :ratings
-  has_many :raters, :through => :ratings, :source => :user
+  has_many :ratings, dependent: :destroy
+  has_many :raters, through: :ratings, source: :user
 
   def average_rating
     @value = 0
@@ -19,7 +19,7 @@ class Scheme < ActiveRecord::Base
     @total = self.ratings.size
     unless @value.zero?
       rating = @value.to_f / @total.to_f
-      self.update(:rating => rating) if rating != self.rating
+      self.update_column(:rating, rating)
       rating
     else 
       "0"

@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     get "users/admin_menu" => "users#admin_menu", as: :admin_menu
 
     resources :elements
-    resources :schemes
+    resources :schemes 
+    get "search" => "schemes#search", as: :search
+    
     resources :ratings
 
   end

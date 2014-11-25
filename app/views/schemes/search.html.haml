@@ -1,0 +1,10 @@
+.container.search
+  - for schemes  in @schemes
+    .search-block-result
+      %h2 
+        = link_to schemes.title.humanize, schemes
+      %p Автор: #{schemes.user.username}
+      %p 
+        Рейтинг: #{schemes.rating} 
+        Количество голосов: #{schemes.ratings.length}
+      .description= markdown(schemes.description)

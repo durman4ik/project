@@ -4,7 +4,6 @@ class SchemesController < InheritedResources::Base
 
 	def index
 		authorize! :read, @scheme 
-		@schemes = Scheme.search params[:search]
 	end
 
 	def edit
@@ -32,11 +31,7 @@ class SchemesController < InheritedResources::Base
 	end
 
 	def show
-		if current_user.nil?
 			@schemes = Scheme.all
-		else
-			@schemes = Scheme.where(:user_id => current_user.id)
-		end	
 	end
 
 	def destroy
@@ -46,6 +41,10 @@ class SchemesController < InheritedResources::Base
       flash[:notice] = "Successfully deleted Scheme."
 			render "users/administrator_menu"
 		end
+	end
+
+	def search
+			@schemes = Scheme.search params[:search], :include => [:user, :ratings], :match_mode => :boolean
 	end
 
 	private

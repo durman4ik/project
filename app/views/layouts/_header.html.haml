@@ -6,6 +6,10 @@
 			%nav.nav-menu
 				%ul.menu
 					= render 'devise/shared/registration'
-		%div.messages
+		.messages
 			.notice= notice
 			.alert= alert
+		.searching-field
+			= form_tag search_path, :method => :get do
+				= text_field_tag :search, params[:search]
+				= submit_tag "Search", :name => nil, class: "btn search-button"

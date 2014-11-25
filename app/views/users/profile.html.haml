@@ -23,11 +23,11 @@
     %section.cases   
       %h1.home-page MY SCHEMES
       -unless current_user.schemes.length == 0
-        -current_user.schemes.each do |scheme|
+        -@schemes.each do |scheme|
           %article.expert.home-all-post.profile
             = link_to scheme.title, scheme_path(scheme), class: "title"
             %p.subtitle 
-              Рейтинг: #{scheme.average_rating}
+              Рейтинг: #{scheme.rating}
               %br
               = "Голосов: #{scheme.ratings.length}"
             %img.attachment-user-thumbnail-normal.wp-post-image.home-page-down{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }

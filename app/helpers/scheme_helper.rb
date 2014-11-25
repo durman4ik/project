@@ -9,7 +9,9 @@ module SchemeHelper
   end
 
   def current_user_rating
+    if current_user
       "Ваша оценка: (#{@rating.value})" if @rating = current_user.ratings.find_by_scheme_id(params[:id])
+    end
   end
 
   def user_can_voted?

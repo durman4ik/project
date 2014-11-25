@@ -1,5 +1,7 @@
 class ElementsController < InheritedResources::Base
 
+  before_action :set_element, only: [:edit, :show, :destroy]
+
   def new
     authorize! :create, Element
     @element = Element.new
@@ -7,7 +9,6 @@ class ElementsController < InheritedResources::Base
 
   def show
     @elements = Element.where(params[:element])
-    @element = Element.find(params[:id])
   end
 
   def edit
@@ -19,7 +20,6 @@ class ElementsController < InheritedResources::Base
   end
 
   def destroy
-    @element = Element.find(params[:id])
     if can? :delete, Element
       @element.destroy
       flash[:notice] = "Successfully deleted Element."
@@ -28,6 +28,10 @@ class ElementsController < InheritedResources::Base
   end
 
 private
+
+  def set_element
+    @element = Element.find(params[:id])
+  end
 
   def element_params
     params.require(:element).permit(:title, :image, :num_inputs, :category)
