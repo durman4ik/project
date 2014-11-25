@@ -5,8 +5,7 @@ module HomeHelper
   end
 
   def top_schemes(schemes)
-    @top_schemes = schemes.sort_by {|x|x.rating }
-    @top_schemes[-5..-1].reverse
+    @top_schemes = schemes.order(:rating).reverse_order.limit(5)
   end
 
 end
