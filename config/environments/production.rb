@@ -61,18 +61,18 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
   config.app_domain = 'https://fastscheme.herokuapp.com'
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: config.app_domain }
-  config.action_mailer.smtp_settings = {
-  :user_name => 'Durman4ik',
-  :password => 'Dumanik13',
-  :domain => 'https://fastscheme.herokuapp.com',
-  :address => 'smtp.sendgrid.net',
-  :port => 587,
-  :authentication => :plain,
-  :enable_starttls_auto => true
-}
+#   config.action_mailer.smtp_settings = {
+#   :user_name => 'Durman4ik',
+#   :password => 'Dumanik13',
+#   :domain => 'https://fastscheme.herokuapp.com',
+#   :address => 'smtp.sendgrid.net',
+#   :port => 587,
+#   :authentication => :plain,
+#   :enable_starttls_auto => true
+# }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
