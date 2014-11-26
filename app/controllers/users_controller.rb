@@ -3,8 +3,7 @@ class UsersController < InheritedResources::Base
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def profile
-    @users = User.all
-    @schemes = Scheme.where(user_id: current_user.id).includes(:ratings, :user)
+    @schemes = Scheme.includes(:ratings, :user).where(user_id: current_user.id)
   end
 
   def destroy
@@ -17,7 +16,7 @@ class UsersController < InheritedResources::Base
 
   def admin_menu
     authorize! :manage, :all
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.where.not(:id => current_user.id).paginate(page: params[:page], per_page: 10)
     @schemes = Scheme.paginate(page: params[:page], per_page: 10)
     @elements = Element.paginate(page: params[:page], per_page: 10)
     render "users/administrator_menu"

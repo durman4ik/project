@@ -1,0 +1,12 @@
+en:
+  schemes:
+    author: "Author:"
+    rating: "Rating:"
+    votes: "Votes:"
+    search: "Search"
+    no_schemes: "You have not created any scheme"
+  profile:
+    edit_btn: "Edit my account"
+    add_scheme_btn: "Create scheme"
+    add_element_btn: "Create element"
+    admin_btn: "Admin tools"

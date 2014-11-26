@@ -5,11 +5,11 @@
 		.ng-scope
 			%nav.nav-menu
 				%ul.menu
-					= render 'devise/shared/registration'
+					= render "devise/shared/registration"
 		.messages
 			.notice= notice
 			.alert= alert
 		.searching-field
 			= form_tag search_path, :method => :get do
 				= text_field_tag :search, params[:search]
-				= submit_tag "Search", :name => nil, class: "btn search-button"
+				= submit_tag t("schemes.search"), :name => nil, class: "btn search-button"

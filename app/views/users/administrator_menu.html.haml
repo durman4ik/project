@@ -2,7 +2,7 @@
 	%h1.home-page Администрирование
 	.admin-blocks
 		.users
-			%h1.admin-panel All users
+			%h1.admin-panel= t("welcome.all_users")
 			.admin-links.users
 				-@users.each do |user|
 					.all-user-links
@@ -12,11 +12,12 @@
 							= link_to "Delete", admin_destroy_user_path(user), method: :delete, data: { confirm: "Are you sure?" }
 						.admin-user-edit-link
 							= link_to "Edit", edit_user_path(user.id)
+					= user.role		
 					%div	
 						%hr.admin-hr
 		= will_paginate @users				
 		.all-scheme 
-			%h1.admin-panel All schemes
+			%h1.admin-panel= t("welcome.all_schemes")
 			.admin-links.users.schemes
 				-@schemes.reverse.each do |scheme|
 					.all-user-links
@@ -30,7 +31,7 @@
 						%hr.admin-hr
 		= will_paginate @schemes				
 		.all-elements
-			%h1.admin-panel All elements
+			%h1.admin-panel= t("welcome.all_elements")
 			.admin-links.users.schemes
 				-@elements.reverse.each do |element|
 					.all-user-links

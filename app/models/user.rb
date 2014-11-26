@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 
-  TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
   
   has_attached_file :avatar, 
@@ -10,8 +9,6 @@ class User < ActiveRecord::Base
   validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/]
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
-
-  attr_accessor :login
 
   validates :username,  presence: true,
                         uniqueness: { case_sensetive: false }
@@ -24,6 +21,8 @@ class User < ActiveRecord::Base
 
   has_many :ratings
   has_many :rated_schemes, :through => :ratings, :source => :scheme
+
+  attr_accessor :login
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
@@ -41,7 +40,7 @@ class User < ActiveRecord::Base
     user = signed_in_resource ? signed_in_resource : identity.user
 
     if user.nil?
-
+      
       email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
       email = auth.info.email if email_is_verified
       user = User.where(:email => email).first if email

@@ -211,4 +211,12 @@ en:
     home: "Home"
     profile: "My profile"
     new_scheme: "Create new scheme"
+    label: "Join in and create your own scheme!"
+    top_rated: "TOP RATED SCHEMES"
+    all_schemes: "ALL SCHEMES"
+    all_elements: "ALL ELEMENTS"
+    all_users: "ALL USERS"
+    my_schemes: "MY SCHEMES"
+    my_account: "MY ACCOUNT"
+    total: "Total schemes:"
 

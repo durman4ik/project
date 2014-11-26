@@ -1,6 +1,7 @@
 class SchemesController < InheritedResources::Base
 
 	before_filter :set_params_scheme, only: [:edit, :show, :destroy]
+	before_action :count_average_rating, only: [:show]
 
 	def edit
 		authorize! :edit, @scheme
@@ -27,7 +28,7 @@ class SchemesController < InheritedResources::Base
 	end
 
 	def show
-			@schemes = Scheme.all
+			@schemes = Scheme.includes(:ratings, :user)
 	end
 
 	def destroy
@@ -48,6 +49,10 @@ class SchemesController < InheritedResources::Base
 	end
 
 	private
+
+		def count_average_rating
+			@scheme.average_rating
+		end
 
 		def set_params_scheme
 			@scheme = Scheme.find(params[:id])

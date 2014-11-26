@@ -34,6 +34,8 @@ en:
       updated_not_active: "Your password has been changed successfully."
     registrations:
       sign_up: "Sign up"
+      sign_up2: "Sign up"
+      register: "Join us"
       sign_in: "Sign in"
       sign_out: "Sign out"
       forgot_pass: "Forgot your password?"
@@ -45,6 +47,8 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Your account has been updated successfully."
     sessions:
+      sign_in_fb: "Sign In With Facebook"
+      sign_in_vk: "Sign In With Vkontakte"
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
@@ -62,3 +66,18 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  forms:
+    password: "Password"
+    password_confirm: "Password confirmation"
+    not_a_user: "Not a user?"
+    create_account: "Create new account"
+    avatar: "Avatar:"
+    confirm_instruction: "Didn't receive confirmation instructions?"
+    have_account: "Already have an account?"
+    reset_password: "Send me reset password instructions"
+    new_password: "New password"
+    confirm_new_pass: "Confirm your new password"
+    submit_new_pass: "Change my password"
+    change_pass: "Change your password"
+    resend_confirm: "Resend confirmation instructions"
+    resend_confirm_btn: "Resend instructions"

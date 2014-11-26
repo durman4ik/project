@@ -1,11 +1,11 @@
 .container
   %h3= @scheme.title
   %p= markdown(@scheme.description)
-  %p Рейтинг: #{@scheme.average_rating}
+  %p Рейтинг: #{@scheme.rating}
   -if user_can_voted?
     =render "rating_form"
   -else 
-    =current_user_rating
+    = "Вы поставили #{current_user_rating}"
 
   -if can? :edit, @scheme
     = link_to 'Edit', edit_scheme_path(@scheme)

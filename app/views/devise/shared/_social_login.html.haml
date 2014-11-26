@@ -1,0 +1,8 @@
+.social-login
+  %ul.options
+    %li
+      = link_to t("devise.sessions.sign_in_fb"), localized_omniauth_path(:facebook), class: "btn fb"
+    %li
+      = link_to t("devise.sessions.sign_in_fb"), localized_omniauth_path(:vkontakte), class: "btn vk"
+  %p.or-label
+    %span= t("welcome.or")

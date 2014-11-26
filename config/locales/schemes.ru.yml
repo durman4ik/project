@@ -1,0 +1,12 @@
+ru:
+  schemes:
+    author: "Автор:"
+    rating: "Рейтинг:"
+    votes: "Голосов:"
+    search: "Поиск"
+    no_schemes: "Вы еще не создали ни одной схемы"
+  profile:
+    edit_btn: "Изменить профиль"
+    add_scheme_btn: "Создать схему"
+    add_element_btn: "Создать элемент"
+    admin_btn: "Администрирование"

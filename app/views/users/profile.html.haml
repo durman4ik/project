@@ -1,7 +1,7 @@
 .container.profile
   %section.my_account
     %div.profile
-      %h1.home-page MY ACCOUNT
+      %h1.home-page= t("welcome.my_account")
       %div.my-file
         %p Name: #{current_user.username}
         %p E-mail: #{current_user.email}
@@ -10,29 +10,31 @@
         =image_tag current_user.avatar.url(:medium), class: "profile-avatar"
 
       %div.account-buttons
-        =link_to "Edit my account", edit_user_registration_path, class: "btn edit"
+        =link_to t("profile.edit_btn"), edit_user_registration_path, class: "btn edit"
         -if can? :create, Scheme
-          =link_to "Добавить схему", new_scheme_path, class: "btn add"
+          =link_to t("profile.add_scheme_btn"), new_scheme_path, class: "btn add"
         -if can? :manage, Element
-          =link_to "Добавить элемент", new_element_path, class: "btn add"
+          =link_to t("profile.add_element_btn"), new_element_path, class: "btn add"
         -if can? :manage, :all  
-          =link_to "Администрирование", admin_menu_path, class: "btn delete"
+          =link_to t("profile.admin_btn"), admin_menu_path, class: "btn delete"
 
   -if can? :create, Scheme
                
     %section.cases   
-      %h1.home-page MY SCHEMES
+      %h1.home-page= t("welcome.my_schemes")
       -unless current_user.schemes.length == 0
         -@schemes.each do |scheme|
           %article.expert.home-all-post.profile
             = link_to scheme.title, scheme_path(scheme), class: "title"
             %p.subtitle 
-              Рейтинг: #{scheme.rating}
+              = t("schemes.rating")
+              = scheme.rating
               %br
-              = "Голосов: #{scheme.ratings.length}"
+              = t("schemes.votes")
+              = scheme.ratings.length
             %img.attachment-user-thumbnail-normal.wp-post-image.home-page-down{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
             .entry-content
               %div.home_posts
                 = scheme.short_description
       -else
-        Вы еще не создали ни одной схемы
+        = t("schemes.no_schemes")

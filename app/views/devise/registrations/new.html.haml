@@ -1,16 +1,9 @@
 .content
   .top
-    %h1= t("devise.registrations.sign_up")
-  %div.stylized
+    %h1= t("devise.registrations.sign_up2")
+  .stylized
     .auth-block
-      .social-login
-        %ul.options
-          %li
-            = link_to "Sign Up With Facebook", localized_omniauth_path(:facebook), class: "btn fb"
-          %li
-            = link_to "Sign Up With Vkontakte", localized_omniauth_path(:vkontakte), class: "btn vk"
-        %p.or-label
-          %span or
+      =render "devise/shared/social_login"
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:multipart => true, autocomplete: 'off'}) do |f|
 
         .field.email
@@ -21,16 +14,17 @@
             = f.input :email, required: true, autofocus: false, placeholder: "E-mail", label: false, input_html: { :autocomplete => "off" }
         .field.password
           .target
-            = f.input :password, placeholder: "Password", required: true, label: false
+            = f.input :password, placeholder: t("forms.password"), required: true, label: false
         .field.password
           .target
-            = f.input :password_confirmation, placeholder: "Password confirmation" ,required: true, label: false
+            = f.input :password_confirmation, placeholder: t("forms.password_confirm"), required: true, label: false
         .field 
-          Аватар
+          = t("forms.avatar")
           = f.file_field :avatar
         %small.t-right.forgot-password
-          Already have an account? #{link_to t("devise.registrations.sign_in"), new_user_session_path}
+          = t("forms.have_account")
+          = link_to t("devise.registrations.sign_in"), new_user_session_path
         .submit-field
           = f.button :submit, t("devise.registrations.sign_up"), class: "btn bigger full"
       %small.info
-        = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+        = link_to t("forms.confirm_instruction"), new_confirmation_path(resource_name)

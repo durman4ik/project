@@ -1,7 +1,7 @@
 .banner
   .banner-text
-    %h1 Live programming help available 24/7
-    =button_to "Register", new_user_registration_path, method: :get, class: "btn-home bigger"
+    %h1=t("welcome.label")
+    =button_to t("devise.registrations.register"), new_user_registration_path, method: :get, class: "btn-home bigger"
 .container.home-page
   =render "home_page"
 

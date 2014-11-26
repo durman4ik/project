@@ -1123,6 +1123,7 @@ div.stylized small strong, div.stylized small a, div.stylized small b {
   font-weight: normal;
   text-decoration: none;
   color: #808080;
+  font-weight: bolder;
 }
 
 div.stylized small.t-right {

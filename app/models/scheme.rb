@@ -11,8 +11,6 @@ class Scheme < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
   has_many :raters, through: :ratings, source: :user
 
-  
-
   def average_rating
     @value = 0
     self.ratings.each do |rating|

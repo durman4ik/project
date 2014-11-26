@@ -1,4 +1,4 @@
-%h1.home-page TOP RATED SCHEMES
+%h1.home-page= t("welcome.top_rated")
 %section.cases
   %ul.home-page
     -top_schemes(@schemes_all).each do |scheme|
@@ -6,25 +6,30 @@
         %article.expert
           = link_to scheme.title, scheme_path(scheme), class: "title"
           %p.subtitle 
-            = "Автор: #{scheme.user.username}"
+            = t("schemes.author")
+            = scheme.user.username
             %br
-            Рейтинг: #{scheme.rating}
+            = t("schemes.rating")
+            = scheme.rating
           %img.attachment-user-thumbnail-normal.wp-post-image{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
           .entry-content
             %div.home_posts
               = scheme.short_description
 %hr 
-%h1.home-page All SCHEMES
-= "Всего схем: #{scheme_quantity}"  
+%h1.home-page= t("welcome.all_schemes")
+= t("welcome.total") 
+= scheme_quantity  
 %hr        
 %section.cases            
   -@schemes.each do |scheme|
     %article.expert.home-all-post
       = link_to scheme.title, scheme_path(scheme), class: "title"
       %p.subtitle 
-        = "Автор: #{scheme.user.username}"
+        = t("schemes.author")
+        = scheme.user.username
         %br
-        Рейтинг: #{scheme.rating}
+        = t("schemes.rating")
+        = scheme.rating
       %img.attachment-user-thumbnail-normal.wp-post-image.home-page-down{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
       .entry-content
         %div.home_posts

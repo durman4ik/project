@@ -1,8 +1,8 @@
 .container
   .content
     .top
-      %h1 Resend confirmation instructions
-    %div.stylized
+      %h1= t("forms.resend_confirm")
+    .stylized
       .auth-block
         = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
           = f.error_notification
@@ -11,4 +11,4 @@
             .target
               = f.input :email, required: true, autofocus: true, label: false, placeholder: "E-mail"
           .form-actions
-            = f.button :submit, "Resend confirmation instructions"
+            = f.button :submit, t("forms.resend_confirm_btn")
