@@ -247,14 +247,14 @@ div.comment .author-info div.comment-author a {
     margin-right: 6px;
     font-weight: bold;
     text-decoration: none;
-    color: #1A8084;
+    color: #11D4DB;
 }
 
 div.comment div.author-info .comment-data {
     font-size: 11px;
     line-height: 14px;
     font-family: Verdana,Geneva,Tahoma,Arial,Helvetica;
-    color: #808080;
+    color: #C2C0C0;
 }
 
 .info3 {
@@ -270,7 +270,7 @@ div.comment div.author-info .comment-data {
     width: 500px;
     word-wrap: break-word;
     font-size: 13px;
-    color: #000;
+    color: #FFF;
     font-family: Arial,Helvetica,Verdana,Sans-serif;
     text-align: left; 
 }
@@ -289,6 +289,7 @@ div.need-sign-in {
 
 div.control-group.text.optional.comment_body {
     padding: 10px 0;
+    color: black;
 }
 
 div.controls textarea.text.optional#comment_body {
@@ -298,8 +299,8 @@ div.controls textarea.text.optional#comment_body {
 }
 
 .delete-comment-link {
-    position: relative;
-    left: 300px;
+    position: absolute;
+    left: 570px;
 }
 
 .delete-comment-link a{

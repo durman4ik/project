@@ -5,6 +5,7 @@ ru:
     votes: "Голосов:"
     search: "Поиск"
     no_schemes: "Вы еще не создали ни одной схемы"
+    comments: "Комментариев:"
   profile:
     edit_btn: "Изменить профиль"
     add_scheme_btn: "Создать схему"

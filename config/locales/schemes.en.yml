@@ -5,6 +5,7 @@ en:
     votes: "Votes:"
     search: "Search"
     no_schemes: "You have not created any scheme"
+    comments: "Comments:"
   profile:
     edit_btn: "Edit my account"
     add_scheme_btn: "Create scheme"

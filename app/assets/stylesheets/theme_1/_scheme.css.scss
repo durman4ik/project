@@ -290,15 +290,11 @@ div.controls textarea.text.optional#comment_body {
 }
 
 .delete-comment-link {
-    position: relative;
-    left: 300px;
+    position: absolute;
+    left: 570px;
 }
 
-.delete-comment-link a{
-    color: #F58B8B;
-    text-decoration: none;
+span.delete-comment-btn {
+    cursor: pointer;
 }
 
-.delete-comment-link a:hover {
-    color: #F02727;
-}

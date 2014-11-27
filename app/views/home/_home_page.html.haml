@@ -11,6 +11,9 @@
             %br
             = t("schemes.rating")
             = scheme.rating
+            %br
+            = t("schemes.comments")
+            = scheme.comments.length
           %img.attachment-user-thumbnail-normal.wp-post-image{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
           .entry-content
             %div.home_posts
@@ -30,6 +33,9 @@
         %br
         = t("schemes.rating")
         = scheme.rating
+        %br
+        = t("schemes.comments")
+        = scheme.comments.length
       %img.attachment-user-thumbnail-normal.wp-post-image.home-page-down{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
       .entry-content
         %div.home_posts

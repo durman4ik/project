@@ -30,7 +30,6 @@ Rails.application.routes.draw do
     end  
     resources :ratings
 
-
     get "search" => "schemes#search", as: :search
 
   end
