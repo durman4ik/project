@@ -1,0 +1,4 @@
+%div
+  =simple_form_for([@scheme, @scheme.comments.build]) do |f|
+    = f.input :body, as: :text, label: false, placeholder: "Ваше мнение не должно превышать 1200 знаков", class: "comment-field"
+    = f.submit "Оставить мнение", class: "btn"

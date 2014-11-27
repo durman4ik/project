@@ -11,14 +11,15 @@ class User < ActiveRecord::Base
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
   validates :username,  presence: true,
-                        uniqueness: { case_sensetive: false }
+                        uniqueness: { case_sensetive: false },
+                        length: { in: 3..18 }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, 
          :omniauthable, :authentication_keys => [:login]
 
   has_many :schemes
-
+  has_many :comments
   has_many :ratings
   has_many :rated_schemes, :through => :ratings, :source => :scheme
 

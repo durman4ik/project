@@ -29,6 +29,8 @@ class SchemesController < InheritedResources::Base
 
 	def show
 			@schemes = Scheme.includes(:ratings, :user)
+			# @comment = Comment.new
+			# @comments = Comment.where(:scheme_id => @scheme.id)
 	end
 
 	def destroy

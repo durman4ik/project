@@ -2,7 +2,6 @@ class RatingsController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-
     @scheme = Scheme.find_by_id(params[:scheme_id])
     if (current_user.id == @scheme.user_id) && (current_user.role != "admin")
         redirect_to scheme_path(@scheme), :alert => "You cannot rate for your own photo"
@@ -20,8 +19,7 @@ class RatingsController < ApplicationController
     authorize! :create, Rating
   end
 
-  def update
-    
+  def update  
     @scheme = Scheme.find_by_id(params[:scheme_id])
     @rating = current_user.ratings.find_by_scheme_id(@scheme.id)
     if @rating.update(rating_params)

@@ -1,0 +1,20 @@
+%ul
+  -@scheme.comments.each do |comment|
+    %li
+      .comment
+        .author-info
+          %a{:href => "#{user_path(comment.user)}"}
+            %figure
+              = image_tag comment.user.avatar.url(:thumb)
+          .author-info2
+            .info3
+              .comment-author
+                = link_to comment.user.username, user_path(comment.user)
+              .comment-data
+                = localize(comment.created_at, :format => :long)
+              .delete-comment-link
+                -if can_delete_comment?(comment)
+                  = link_to "X", [comment.scheme, comment], method: :delete, data: { confirm: "Are you sure?"}
+            .comment-body
+              =comment.body
+

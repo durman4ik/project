@@ -7,10 +7,25 @@
   -else 
     = "Вы поставили #{current_user_rating}"
 
-  -if can? :edit, @scheme
-    = link_to 'Edit', edit_scheme_path(@scheme)
+  .edit-link-in-show
+    = link_to 'Back', :back
+    -if can? :edit, @scheme
+      = link_to 'Edit', edit_scheme_path(@scheme), class: "edit-link-in-show"
+  -if cannot? :create, Comment
+    .need-sign-in
+      Чтобы высказать свое мнение, 
+      =link_to "войдите", new_user_session_path
+      или 
+      =link_to "зарегистрируйтесь", new_user_registration_path 
+  .comments 
+    =render "comments/show"
+  -if can? :create, Scheme
+    =render "comments/new"
 
-= link_to 'Back', :back
+
+
+
+
 
 - content_for(:scripts) do
   = javascript_include_tag "jquery-2.1.1.min.js"

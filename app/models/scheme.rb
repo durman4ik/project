@@ -2,6 +2,10 @@ class Scheme < ActiveRecord::Base
 	
 	validates  :title, presence: true
   validates  :short_description, presence: true
+  validates  :description,  length: {
+    maximum: 1000,
+    too_long: "%{count} characters is the maximum allowed"
+  }
 
   belongs_to :user
 
@@ -11,6 +15,8 @@ class Scheme < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
   has_many :raters, through: :ratings, source: :user
 
+  has_many :comments
+
   def average_rating
     @value = 0
     self.ratings.each do |rating|
@@ -19,7 +25,7 @@ class Scheme < ActiveRecord::Base
     @total = self.ratings.size
     unless @value.zero?
       rating = @value.to_f / @total.to_f
-      self.update_column(:rating, rating)
+      self.update_column(:rating, rating.round(1))
       rating
     else 
       "0"
