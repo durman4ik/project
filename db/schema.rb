@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126204838) do
+ActiveRecord::Schema.define(version: 20141127162320) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -24,11 +24,15 @@ ActiveRecord::Schema.define(version: 20141126204838) do
   create_table "constructions", force: true do |t|
     t.integer  "element_id"
     t.integer  "scheme_id"
-    t.float    "cordx",      limit: 24
-    t.float    "cordy",      limit: 24
+    t.float    "cordx",       limit: 24
+    t.float    "cordy",       limit: 24
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "color"
+    t.string   "users_title"
   end
 
   create_table "elements", force: true do |t|
@@ -53,12 +57,26 @@ ActiveRecord::Schema.define(version: 20141126204838) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "properties", force: true do |t|
+    t.string   "title"
+    t.string   "value"
+    t.integer  "element_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ratings", force: true do |t|
     t.integer  "user_id"
     t.integer  "scheme_id"
     t.decimal  "value",      precision: 11, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "scheme_element_properties", force: true do |t|
+    t.integer "construction_id"
+    t.integer "property_id"
+    t.string  "value"
   end
 
   create_table "schemes", force: true do |t|

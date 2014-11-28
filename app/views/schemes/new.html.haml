@@ -1,96 +1,44 @@
 .container
   .new_scheme
 
-  #1.paint-scheme-form
-  = simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
-    .flexRow
-      %div
-        = f.input  :title, class: "form-control"
-        = f.input  :short_description, as: :text
-      .ConnectionLines
-        %div Соединительные линии
-        %br/
-        %input.btn-custom.add-line-btn{:type => "button", :value => "Добавить"}/
-        %input.btn-custom.delete-line-btn{:type => "button", :value => "Удалить"}/
-        %input.btn-custom.edit-line-btn{:type => "button", :value => "Редактировать"}/
-      .color-select
-        %label
-          %input.color-selector{:type => "color"}/
-          Цвет элементов
-    .flexRow
-      .property-block
-        %h2.menu-header Свойства элементов
-        .scheme-element-properties
-          %h3.user-element-name Мой элемент на схеме
-          %p.element-name Источник ЭДС
-          %p.count-connections
-            Кол-в соединений:
-            %span.counter 3
-          %ul.properties-list
-            %li
-              %label
-                Сопротивление:
-                %input{:size => "10", :type => "text", :value => "10 ОМ"}/
-            %li
-              %label
-                Индукимвность:
-                %input{:size => "10", :type => "text", :value => "2 чего-то"}/
-            %li
-              %label
-                Макс. напряжение:
-                %input{:size => "10", :type => "text", :value => "220 в"}/
-        .scheme-element-properties
-          %h3.user-element-name Мой второй элемент на схеме
-          %p.element-name Источник ЭДС
-          %p.count-connections
-            Кол-в соединений:
-            %span.counter 3
-          %ul.properties-list
-            %li
-              %label
-                Сопротивление:
-                %input{:size => "10", :type => "text", :value => "10 ОМ"}/
-            %li
-              %label
-                Индукимвность:
-                %input{:size => "10", :type => "text", :value => "2 чего-то"}/
-            %li
-              %label
-                Макс. напряжение:
-                %input{:size => "10", :type => "text", :value => "220 в"}/
-        .scheme-element-properties
-          %h3.user-element-name Ну и так далее...
-          %p.element-name Источник ЭДС
-          %p.count-connections
-            Кол-в соединений:
-            %span.counter 3
-          %ul.properties-list
-            %li
-              %label
-                Сопротивление:
-                %input{:size => "10", :type => "text", :value => "10 ОМ"}/
-            %li
-              %label
-                Индукимвность:
-                %input{:size => "10", :type => "text", :value => "2 чего-то"}/
-            %li
-              %label
-                Макс. напряжение:
-                %input{:size => "10", :type => "text", :value => "220 в"}/
-      %canvas#canvas
-      %div.users
-        .list_scheme-element            
-          - @elements.each do |element|
-            .scheme-element
-              %img#imageid.scheme-element-image{:draggable => "true", :src => element.image.url}/
-              %span.scheme-element-name= element.title
-              %span.scheme-element-count-inputs
-                Соединений:
-                %span.counter= element.num_inputs
-    .description-scheme
-      = f.input  :description, as: :text
-      = f.button :submit, method: :post
+  #1.paint-scheme-form{:name => "scheme_#{@scheme.id}"}
+    = simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
+      .flexRow
+        %div
+          = f.input  :title, class: "form-control"
+          = f.input  :short_description, as: :text
+        .ConnectionLines
+          %div Соединительные линии
+          %br/
+          %input.btn-custom.add-line-btn{:type => "button", :value => "Добавить"}/
+          %input.btn-custom.delete-line-btn{:type => "button", :value => "Удалить"}/
+          %input.btn-custom.edit-line-btn{:type => "button", :value => "Редактировать"}/
+          %input.btn-custom.edit-line-btn.load-button{:type => "button", :value => "Отменить изменения" }/
+          %input.btn-custom.edit-line-btn.save-button{:type => "button", :value => "Сохранить"}/
+        .color-select
+          %label
+            %input.color-selector{:type => "color"}/
+            Цвет элементов
+      .flexRow
+        .property-block
+          %h2.menu-header Свойства элементов
+          .properties-area
+        %canvas#canvas
+        %div.users
+          .list_scheme-element
+            %h2.menu-header Доступные элементы
+            - @elements.each do |element|
+              .scheme-element
+                %img.scheme-element-image{:draggable => "true", :src => element.image.url, :name => "element_#{element.id}"}/
+                %span.scheme-element-name= element.title
+                %span.scheme-element-count-inputs
+                  Соединений:
+                  %span.counter= element.num_inputs
+      .description-scheme
+        = f.input  :description, as: :text
+        = f.button :submit, method: :post
 
-- content_for(:scripts) do
-  = javascript_include_tag "SchemeDesigner"
+  - content_for(:scripts) do
+    = javascript_include_tag "SchemeDesigner"
+=render "home/back_link"
 

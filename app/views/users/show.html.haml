@@ -11,4 +11,7 @@
 		%div
 			%h3= "#{@user.username.capitalize} scheemes"
 			%p="Схем создано: #{@user.schemes.length} "
-			%p=@schemes.map {|scheme| scheme.title }
+			%div
+			-@schemes.each do |scheme| 
+				= link_to scheme.title, scheme_path(scheme)
+=render "home/back_link"

@@ -11,6 +11,8 @@
     = link_to 'Back', :back
     -if can? :edit, @scheme
       = link_to 'Edit', edit_scheme_path(@scheme), class: "edit-link-in-show"
+    -if can? :destroy, @scheme
+      = link_to "Delete", scheme_path(@scheme), method: :delete
   -if cannot? :create, Comment
     .need-sign-in
       Чтобы высказать свое мнение, 
@@ -22,7 +24,7 @@
   -if can? :create, Scheme
     =render "comments/new"
 
-
+=render "home/back_link"
 
 
 

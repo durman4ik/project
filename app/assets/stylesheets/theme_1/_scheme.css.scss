@@ -80,7 +80,6 @@ article.expert.home-all-post.profile {
 .flexRow{
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .property-block{
@@ -96,6 +95,9 @@ article.expert.home-all-post.profile {
     padding: 0px;
     border: solid 1px black;
     background-color: whitesmoke;
+}
+input .list_scheme-element{
+    width: auto;
 }
 
 .list_scheme-element, .property-block{
@@ -119,8 +121,6 @@ h2.menu-header, p.element-name, h3.user-element-name, p.count-connections{
     width: 300px;
     margin-top: 20px;
 }
-
-
 
 .btn-custom {
     background-color: hsl(195, 79%, 43%) !important;
@@ -298,3 +298,22 @@ span.delete-comment-btn {
     cursor: pointer;
 }
 
+.link.back {
+    width: 90px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 70px;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(147, 147, 147);
+    background-color: rgb(234, 234, 234);
+    padding-top: 15px;
+}
+
+.link.back:hover {
+    color: whitesmoke;
+    background-color: rgb(203, 203, 203);
+};

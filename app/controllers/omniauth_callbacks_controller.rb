@@ -1,4 +1,5 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
   def vkontakte
     handle_redirect('devise.vkontakte_data', 'Vkontakte')
   end
@@ -19,4 +20,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def user
     User.find_for_oauth(env['omniauth.auth'], current_user)
   end
+  
 end

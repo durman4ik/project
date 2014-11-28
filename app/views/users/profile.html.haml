@@ -15,6 +15,8 @@
           =link_to t("profile.add_scheme_btn"), new_scheme_path, class: "btn add"
         -if can? :manage, Element
           =link_to t("profile.add_element_btn"), new_element_path, class: "btn add"
+        -if current_user.role == "owner"
+          = link_to "Все элементы", elements_path, class: "btn edit"
         -if can? :manage, :all  
           =link_to t("profile.admin_btn"), admin_menu_path, class: "btn delete"
 
@@ -38,3 +40,4 @@
                 = scheme.short_description
       -else
         = t("schemes.no_schemes")
+=render "home/back_link"

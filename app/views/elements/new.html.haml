@@ -8,5 +8,9 @@
         = f.input        :title, class: "form-control"
         = f.input        :num_inputs
         = f.file_field   :image 
-        = f.button       :submit, method: :post
-
+        =f.simple_fields_for :properties do |p|
+          %div
+            = p.input     :title
+            = p.input     :value
+        = f.button :submit
+=render "home/back_link"

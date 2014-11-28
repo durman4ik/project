@@ -326,3 +326,103 @@ div.container.home-page{
 img.profile-avatar {
     width: 150px;
 }
+
+.container.admin{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+div.admin-blocks {
+  display: flex;
+  flex-direction: row;
+}
+
+h1.admin-panel {
+  font-size: 20px;
+  padding-bottom: 10px;
+  color: rgb(69, 178, 169);
+}
+
+.admin-links {
+  padding-left: 15px;
+}
+
+div.admin-links.users {
+  display: flex;
+  flex-direction: column;
+}
+div.users {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 400px;
+}
+
+div.all-scheme {
+  border-left: 1px dotted rgb(200, 200, 200);
+  padding-left: 10px;
+  margin-left: 8px;
+  width: 400px;
+}
+
+div.all-elements {
+  width: 400px;
+  border-left: 1px dotted rgb(200, 200, 200);
+  padding-left: 10px;
+  margin-left: 8px;
+}
+
+div.all-user-links {
+  display: flex;
+}
+
+div.admin-user-email-link {
+  display: flex;
+  flex-basis: 290px;
+}
+
+div.admin-user-email-link a {
+  text-decoration: none;
+}
+
+div.admin-user-delete-link {
+  display: flex;
+  flex-basis: 50px;
+}
+div.admin-user-delete-link a {
+  color: red;
+}
+
+div.admin-user-delete-link a:hover {
+  color: rgb(155, 35, 35);
+  text-decoration: none;
+}
+
+div.admin-user-edit-link a {
+  color: #7D8413;
+}
+
+div.admin-user-edit-link a:hover {
+  color: #51560B;
+  text-decoration: none;
+}
+
+div.admin-links.users.schemes {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+div.admin-user-email-link.scheme {
+  display: flex;
+  flex-basis: 270px;
+}
+
+div.admin-user-email-link.element {
+  display: flex;
+}
+
+hr.admin-hr {
+  border-bottom: 1px dotted grey
+}

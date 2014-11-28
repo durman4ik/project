@@ -6,6 +6,13 @@
     %br
     = image_tag @element.image.url
 
-  =link_to "Edit", edit_element_path(@element)
-  \|
-  =link_to "Back", user_root_path
+    %p Свойства
+    -@element.properties.each do |property|
+      %div
+        = "#{property.title}: #{property.value}"
+        = link_to "delete", property_path(property), method: :delete
+
+    %div
+      = link_to "Edit", edit_element_path(@element)
+    
+=render "home/back_link"

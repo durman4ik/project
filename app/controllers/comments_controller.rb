@@ -1,10 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
 
-  def new
-    @comment = Comment.new
-  end
-
   def create
     @scheme = Scheme.find(params[:scheme_id])
     @comment = @scheme.comments.new(comments_params)

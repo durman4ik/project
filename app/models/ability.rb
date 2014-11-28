@@ -15,6 +15,9 @@ class Ability
       can :edit, Scheme do |s|
         s.user_id == user.id
       end
+      can :destroy, Scheme do |s|
+        s.user_id == user.id
+      end
 
       can :create, Rating
       can :manage, Element
@@ -30,6 +33,10 @@ class Ability
       can :create, Scheme
 
       can :edit, Scheme do |s|
+        s.user_id == user.id
+      end
+
+      can :destroy, Scheme do |s|
         s.user_id == user.id
       end
 

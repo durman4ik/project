@@ -43,11 +43,6 @@ article.expert.home-all-post.profile {
 	margin-left: 30px;
 }
 
-.users{
-	float: left;
-	margin-left: 30px;
-}
-
 .scheme-element-image {
     float: left;
     margin-right:10px ;
@@ -303,11 +298,26 @@ div.controls textarea.text.optional#comment_body {
     left: 570px;
 }
 
-.delete-comment-link a{
-    color: #F58B8B;
-    text-decoration: none;
+span.delete-comment-btn {
+    cursor: pointer;
 }
 
-.delete-comment-link a:hover {
-    color: #F02727;
+.link.back {
+    width: 90px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 70px;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(147, 147, 147);
+    background-color: rgb(234, 234, 234);
+    padding-top: 15px;
 }
+
+.link.back:hover {
+    color: whitesmoke;
+    background-color: rgb(203, 203, 203);
+};

@@ -29,8 +29,6 @@ class SchemesController < InheritedResources::Base
 
 	def show
 			@schemes = Scheme.includes(:ratings, :user)
-			# @comment = Comment.new
-			# @comments = Comment.where(:scheme_id => @scheme.id)
 	end
 
 	def destroy
@@ -48,6 +46,32 @@ class SchemesController < InheritedResources::Base
                              										:match_mode => :any,
                              										:page => params[:page],
 																								:per_page => 10)
+	end
+
+	def foo
+
+    if params[:query] == 'load_properties'
+    	@element = Element.find(params[:data])
+
+      unless @element.nil?
+      	@properties = []
+        
+        	@element.properties.each do |property| 
+	        	a={}
+	        	a[:name] = property.title
+	        	a[:value] = property.value
+	        	@properties << a
+        	end
+
+       	unless @element.properties.nil? 
+        	render :json => { :answer => 'забирай свойства элемента' ,
+                          :data=>{:id=> @element.id, :name => @element.title, :connections=> @element.num_inputs,
+                                  :properties => @properties } }
+        else
+        	render :json => { :answer => 'у этого элемента нет свойств' }
+        end
+      end
+    end
 	end
 
 	private

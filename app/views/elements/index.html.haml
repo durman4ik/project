@@ -1,0 +1,17 @@
+.container.admin
+  .admin-blocks
+    .all-elements
+      %h1.admin-panel= t("welcome.all_elements")
+      .admin-links.users.schemes
+        -@elements.reverse.each do |element|
+          .all-user-links
+            .admin-user-email-link.element
+              = link_to element.title, element_path(element)
+            .admin-user-delete-link
+              = link_to "Delete", element_path(element), method: :delete, data: { confirm: "Are you sure?"}
+            .admin-user-edit-link
+              = link_to "Edit", edit_element_path(element.id)
+          %div  
+            %hr.admin-hr
+        = will_paginate @elements
+=render "home/back_link"
