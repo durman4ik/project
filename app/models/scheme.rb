@@ -4,8 +4,11 @@ class Scheme < ActiveRecord::Base
   validates  :short_description, presence: true
   validates  :description,  length: {
     maximum: 1000,
-    too_long: "%{count} characters is the maximum allowed"
-  }
+    too_long: "%{count} characters is the maximum allowed"}
+  has_attached_file :scheme_image,
+    :styles => { medium: "150x150>", thumb: "50x50>" }
+
+  do_not_validate_attachment_file_type :scheme_image
 
   belongs_to :user
 

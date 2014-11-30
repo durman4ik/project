@@ -113,7 +113,16 @@ h2.menu-header, p.element-name, h3.user-element-name, p.count-connections{
 }
 
 
-.ConnectionLines, .list_scheme-element, .color-select, .property-block{
+.tool-panel {
+    border: solid 1px #4169E1;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: skyblue;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.list_scheme-element,.property-block{
     border: solid 1px #4169E1;
     border-radius: 8px;
     padding: 5px;
@@ -123,21 +132,14 @@ h2.menu-header, p.element-name, h3.user-element-name, p.count-connections{
 }
 
 .btn-custom {
-    background-color: hsl(195, 79%, 43%) !important;
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#56c5eb", endColorstr="#1798c4");
-    background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), to(#1798c4));
-    background-image: -moz-linear-gradient(top, #56c5eb, #1798c4);
-    background-image: -ms-linear-gradient(top, #56c5eb, #1798c4);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56c5eb), color-stop(100%, #1798c4));
-    background-image: -webkit-linear-gradient(top, #56c5eb, #1798c4);
-    background-image: -o-linear-gradient(top, #56c5eb, #1798c4);
-    background-image: linear-gradient(#56c5eb, #1798c4);
-    border-color: #1798c4 #1798c4 hsl(195, 79%, 38%);
-    color: #333 !important;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
-    -webkit-font-smoothing: antialiased;
+    width: 50px;
+    height: 50px;
 }
+
+.btn-custom:hover{
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -308,12 +310,75 @@ span.delete-comment-btn {
     top: 70px;
     cursor: pointer;
     text-decoration: none;
-    color: rgb(147, 147, 147);
-    background-color: rgb(234, 234, 234);
+    color: #939393;
+    background-color: rgba(255, 255, 255, 0);
     padding-top: 15px;
+    transition: background .3s ease-in-out;
 }
 
 .link.back:hover {
     color: whitesmoke;
-    background-color: rgb(203, 203, 203);
-};
+    background-color: rgba(203, 203, 203, 0.7);
+}
+
+.link.back.scheme {
+    width: 53px;
+}
+
+.control-group.string.optional.element_properties_title {
+    float: left;
+    padding-right: 10px;
+}
+
+.propperty-edit.block {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.container.scheme {
+    width: 1240px;
+}
+
+.simple_form.new_scheme {
+
+}
+
+article.expert.home-all-post:hover {
+    background-color: #D7D7D7;
+    transition: background .4s ease-in-out;  
+}
+
+li.home-page:hover {
+    background-color:rgba(224, 224, 224, 0.43)
+}
+
+.comment:hover {
+    background-color:  rgba(229, 229, 229, 0.59);
+    transition: background .3s ease-in-out;  
+}
+
+.padding-25-block {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: inline-flex;
+}
+
+.control-group.string.required.element_properties_title {
+    float: left;
+    padding-right: 10px;
+    width: 280px;
+}
+
+.new_element {
+    width: 400px;
+}
+
+.property-name {
+    width: 280px;
+    float: left;
+    padding-right: 20px;
+}
+
+.property-value {
+    width: 120px;
+}

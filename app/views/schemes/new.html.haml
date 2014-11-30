@@ -1,44 +1,12 @@
 .container
   .new_scheme
 
-  #1.paint-scheme-form{:name => "scheme_#{@scheme.id}"}
     = simple_form_for(@scheme, params[:scheme] => schemes_path, :method => :post, html: {role: 'form' }) do |f|
-      .flexRow
-        %div
-          = f.input  :title, class: "form-control"
-          = f.input  :short_description, as: :text
-        .ConnectionLines
-          %div Соединительные линии
-          %br/
-          %input.btn-custom.add-line-btn{:type => "button", :value => "Добавить"}/
-          %input.btn-custom.delete-line-btn{:type => "button", :value => "Удалить"}/
-          %input.btn-custom.edit-line-btn{:type => "button", :value => "Редактировать"}/
-          %input.btn-custom.edit-line-btn.load-button{:type => "button", :value => "Отменить изменения" }/
-          %input.btn-custom.edit-line-btn.save-button{:type => "button", :value => "Сохранить"}/
-        .color-select
-          %label
-            %input.color-selector{:type => "color"}/
-            Цвет элементов
-      .flexRow
-        .property-block
-          %h2.menu-header Свойства элементов
-          .properties-area
-        %canvas#canvas
-        %div.users
-          .list_scheme-element
-            %h2.menu-header Доступные элементы
-            - @elements.each do |element|
-              .scheme-element
-                %img.scheme-element-image{:draggable => "true", :src => element.image.url, :name => "element_#{element.id}"}/
-                %span.scheme-element-name= element.title
-                %span.scheme-element-count-inputs
-                  Соединений:
-                  %span.counter= element.num_inputs
-      .description-scheme
-        = f.input  :description, as: :text
-        = f.button :submit, method: :post
+      = f.input  :title, class: "form-control"
+      = f.input  :short_description, as: :text
+      = f.input  :description, as: :text
+      = f.button :submit, method: :post
 
-  - content_for(:scripts) do
-    = javascript_include_tag "SchemeDesigner"
-=render "home/back_link"
+%div
+  = link_to t("welcome.back"), :back, class: "link back"
 

@@ -15,7 +15,7 @@
           =link_to t("profile.add_scheme_btn"), new_scheme_path, class: "btn add"
         -if can? :manage, Element
           =link_to t("profile.add_element_btn"), new_element_path, class: "btn add"
-        -if current_user.role == "owner"
+        -if can? :create, Element
           = link_to "Все элементы", elements_path, class: "btn edit"
         -if can? :manage, :all  
           =link_to t("profile.admin_btn"), admin_menu_path, class: "btn delete"
@@ -34,6 +34,9 @@
               %br
               = t("schemes.votes")
               = scheme.ratings.length
+              %br
+              Опубликована? 
+              = scheme.published
             %img.attachment-user-thumbnail-normal.wp-post-image.home-page-down{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
             .entry-content
               %div.home_posts

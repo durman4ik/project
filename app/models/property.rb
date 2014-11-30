@@ -5,4 +5,8 @@ class Property < ActiveRecord::Base
 
   belongs_to :element
 
+  def can_destoy_property(element)
+    element.properties.length > 1
+  end
+
 end

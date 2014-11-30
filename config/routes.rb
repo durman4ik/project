@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:session, :password, :registration, :confirmation], 
               controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
-  post "ajax" => "schemes#foo", as: :foo
+ 
 
   scope "(:locale)", locale: /ru|en/ do
+
+    post "ajax" => "constructions#foo", as: :foo
 
     root to: "home#index"
 
@@ -26,16 +28,17 @@ Rails.application.routes.draw do
     delete "users/:id/profile" => "users#destroy", as: :admin_destroy_user
     get "users/admin_menu" => "users#admin_menu", as: :admin_menu
 
-    resources :elements
+    
     resources :schemes  do
       resources :comments
+      resources :constructions
     end  
     resources :ratings
+    resources :elements
     resources :properties
 
-    get "search" => "schemes#search", as: :search
 
-    
+    get "search" => "schemes#search", as: :search
 
   end
 

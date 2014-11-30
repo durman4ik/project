@@ -24,6 +24,8 @@ gem 'haml'
 gem 'inherited_resources'
 gem 'redcarpet'
 
+gem 'cocaine'
+
 gem 'paperclip'
 gem "mini_magick"
 

@@ -14,7 +14,7 @@
             %br
             = t("schemes.comments")
             = scheme.comments.length
-          %img.attachment-user-thumbnail-normal.wp-post-image{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
+          %img.attachment-user-thumbnail-normal.wp-post-image{:height => "100", :src => "#{scheme.scheme_image.url}" }
           .entry-content
             %div.home_posts
               = scheme.short_description

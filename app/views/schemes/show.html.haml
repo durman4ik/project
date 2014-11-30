@@ -8,11 +8,12 @@
     = "Вы поставили #{current_user_rating}"
 
   .edit-link-in-show
-    = link_to 'Back', :back
     -if can? :edit, @scheme
       = link_to 'Edit', edit_scheme_path(@scheme), class: "edit-link-in-show"
     -if can? :destroy, @scheme
       = link_to "Delete", scheme_path(@scheme), method: :delete
+      -if @scheme.published == false
+        = link_to "Опубликовать", scheme_path(@scheme, published: true ), method: :put
   -if cannot? :create, Comment
     .need-sign-in
       Чтобы высказать свое мнение, 

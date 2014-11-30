@@ -10,7 +10,7 @@
     -@element.properties.each do |property|
       %div
         = "#{property.title}: #{property.value}"
-        = link_to "delete", property_path(property), method: :delete
+        = link_to "delete", property_path(property), method: :delete, data: { confirm: "Are you sure?"}
 
     %div
       = link_to "Edit", edit_element_path(@element)

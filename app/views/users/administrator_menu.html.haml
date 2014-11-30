@@ -15,7 +15,7 @@
 					= user.role		
 					%div	
 						%hr.admin-hr
-		= will_paginate @users				
+				= will_paginate @users				
 		.all-scheme 
 			%h1.admin-panel= t("welcome.all_schemes")
 			.admin-links.users.schemes
@@ -29,7 +29,7 @@
 							= link_to "Edit", edit_scheme_path(scheme.id)
 					%div	
 						%hr.admin-hr
-		= will_paginate @schemes				
+				= will_paginate @schemes				
 		.all-elements
 			%h1.admin-panel= t("welcome.all_elements")
 			.admin-links.users.schemes
@@ -43,5 +43,5 @@
 							= link_to "Edit", edit_element_path(element.id)
 					%div	
 						%hr.admin-hr
-		= will_paginate @elements
+				= will_paginate @elements
 =render "home/back_link"

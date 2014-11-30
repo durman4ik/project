@@ -3,7 +3,7 @@ class UsersController < InheritedResources::Base
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def profile
-    @schemes = Scheme.includes(:ratings, :user).where(user_id: current_user.id)
+    @schemes = Scheme.includes(:ratings, :user).where(user_id: current_user.id).paginate(page: params[:page], per_page: 8)
   end
 
   def destroy

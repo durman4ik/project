@@ -4,4 +4,5 @@
       = f.input  :title, class: "form-control"
       = f.input  :description, as: :text 
       = f.button :submit, method: :post
-=render "home/back_link"
+%div
+  = link_to t("welcome.back"), :back, class: "link back scheme"
