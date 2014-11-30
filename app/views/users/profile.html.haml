@@ -37,7 +37,7 @@
               %br
               Опубликована? 
               = scheme.published
-            %img.attachment-user-thumbnail-normal.wp-post-image.home-page-down{:height => "100", :src => "#{scheme.user.avatar.url(:medium)}" }
+            %img.attachment-user-thumbnail-normal.wp-post-image.home-page-down{:height => "100", :src => "#{scheme.scheme_image.url(:medium)}" }
             .entry-content
               %div.home_posts
                 = scheme.short_description

@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:session, :password, :registration, :confirmation], 
               controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
- 
+ post "ajax" => "constructions#foo", as: :foo
 
   scope "(:locale)", locale: /ru|en/ do
 
-    post "ajax" => "constructions#foo", as: :foo
+    
 
     root to: "home#index"
 

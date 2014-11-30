@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129141039) do
+ActiveRecord::Schema.define(version: 20141130131318) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -24,15 +24,11 @@ ActiveRecord::Schema.define(version: 20141129141039) do
   create_table "constructions", force: true do |t|
     t.integer  "element_id"
     t.integer  "scheme_id"
-    t.float    "cordx",       limit: 24
-    t.float    "cordy",       limit: 24
-    t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "width"
-    t.integer  "height"
-    t.string   "color"
     t.string   "users_title"
+    t.integer  "parametrs_id"
+    t.string   "tips"
   end
 
   create_table "elements", force: true do |t|
@@ -55,6 +51,12 @@ ActiveRecord::Schema.define(version: 20141129141039) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "parametrs", force: true do |t|
+    t.string  "name"
+    t.string  "value"
+    t.integer "construction_id"
+  end
 
   create_table "properties", force: true do |t|
     t.string   "title"

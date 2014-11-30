@@ -140,6 +140,10 @@ h2.menu-header, p.element-name, h3.user-element-name, p.count-connections{
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
+.selected-btn{
+    box-shadow: 0 0 5px rgba(255,0,0,0.5);
+}
+
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;

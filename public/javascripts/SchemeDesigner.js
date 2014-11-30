@@ -11,6 +11,7 @@ AppControl = (function() {
     this.buffered_draw = __bind(this.buffered_draw, this);
     this.clear_buffer = __bind(this.clear_buffer, this);
     this.init_buffer = __bind(this.init_buffer, this);
+    this.load_scheme_data = __bind(this.load_scheme_data, this);
     this.init_scheme_data = __bind(this.init_scheme_data, this);
     this.init_event_handlers = __bind(this.init_event_handlers, this);
     this.update_area = __bind(this.update_area, this);
@@ -39,6 +40,14 @@ AppControl = (function() {
 
   AppControl.prototype.init_scheme_data = function() {
     return this.schemeData = new SchemeData();
+  };
+
+  AppControl.prototype.load_scheme_data = function() {
+    return this.schemeData.load_data_from_server(this.app_config, this.area_map, (function(_this) {
+      return function() {
+        return _this.update_area();
+      };
+    })(this));
   };
 
   AppControl.prototype.init_buffer = function() {
@@ -665,7 +674,8 @@ Draw_area_event_handlers = (function() {
     this.area_events.on_tool_delete = false;
     this.area_events.on_tool_move = false;
     this.area_events.on_tool_change_color = false;
-    return this.area_events.on_tool_draw_line = false;
+    this.area_events.on_tool_draw_line = false;
+    return $('.btn-custom').removeClass('selected-btn');
   };
 
   Draw_area_event_handlers.prototype.get_on_mouse_hover_element = function(e) {
@@ -739,11 +749,11 @@ EventsHandlerInitializer = (function() {
             newId = _this.app.schemeData.get_new_id();
             r = _this.app.area_map.get_rect_map_range(c.canvas_x, c.canvas_y, img.width, img.height);
             if (_this.app.area_map.is_empty_or_key_map_range(r.fromI, r.toI, r.fromJ, r.toJ, 'newElement')) {
-              elem = new SchemeElement(newId, c.canvas_x, c.canvas_y, img.width, img.height, count_conn, img, color, _this.app.area_map, "");
               id_scheme = $(_this.app.app_config.class_paint_scheme_form)[0].getAttribute('name').split('_')[1];
               id_element = img.name.split('_')[1];
+              elem = new SchemeElement(newId, c.canvas_x, c.canvas_y, img.width, img.height, count_conn, img, color, _this.app.area_map, "", id_element);
               _this.app.schemeData.add(newId, SchemeElement, elem);
-              _this.app.schemeData.load_element_properties(id_element, id_scheme, _this.app.app_config, function(res) {
+              _this.app.schemeData.load_element_properties(newId, id_scheme, _this.app.app_config, function(res) {
                 return elem.DOMPropertiesList = res;
               });
               return _this.app.update_area();
@@ -772,25 +782,29 @@ EventsHandlerInitializer = (function() {
     $('.' + this.app.app_config.class_delete_button).on('click', (function(_this) {
       return function() {
         _this.area_events.unselect_tool_buttons();
-        return _this.area_events.area_events.on_tool_delete = true;
+        _this.area_events.area_events.on_tool_delete = true;
+        return $('.' + _this.app.app_config.class_delete_button).addClass('selected-btn');
       };
     })(this));
     $('.' + this.app.app_config.class_move_button).on('click', (function(_this) {
       return function() {
         _this.area_events.unselect_tool_buttons();
-        return _this.area_events.area_events.on_tool_move = true;
+        _this.area_events.area_events.on_tool_move = true;
+        return $('.' + _this.app.app_config.class_move_button).addClass('selected-btn');
       };
     })(this));
     $('.' + this.app.app_config.class_draw_line_button).on('click', (function(_this) {
       return function() {
         _this.area_events.unselect_tool_buttons();
-        return _this.area_events.area_events.on_tool_draw_line = true;
+        _this.area_events.area_events.on_tool_draw_line = true;
+        return $('.' + _this.app.app_config.class_draw_line_button).addClass('selected-btn');
       };
     })(this));
     return $('.' + this.app.app_config.class_change_color_button).on('click', (function(_this) {
       return function() {
         _this.area_events.unselect_tool_buttons();
-        return _this.area_events.area_events.on_tool_change_color = true;
+        _this.area_events.area_events.on_tool_change_color = true;
+        return $('.' + _this.app.app_config.class_change_color_button).addClass('selected-btn');
       };
     })(this));
   };
@@ -829,7 +843,8 @@ $(document).ready((function(_this) {
   return function() {
     var app_control;
     app_control = new AppControl(_this.app_config);
-    return app_control.run();
+    app_control.run();
+    return app_control.load_scheme_data();
   };
 })(this));
 
@@ -903,16 +918,18 @@ SchemeData = (function() {
   };
 
   SchemeData.prototype.add_from_AJAX_data = function(response_data, area_map, app_config) {
-    var i, id, id_scheme, image, o, obj, type, _i, _ref, _results;
+    var i, id, id_scheme, obj, obj_data, type, type_initializer, _i, _ref, _results;
     _results = [];
     for (i = _i = 0, _ref = response_data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
       id = response_data[i].id;
-      o = response_data[i].obj;
       type = window[response_data[i].type];
-      image = document.createElement("IMG");
-      image.src = o.image;
+      type_initializer = window[response_data[i].type].prototype.from_database_data;
       id_scheme = $(app_config.class_paint_scheme_form)[0].getAttribute('name').split('_')[1];
-      obj = new type(id, o.x, o.y, o.width, o.height, o.connections, image, o.color, area_map, "");
+      obj_data = response_data[i].obj;
+      obj_data.id = id;
+      obj_data.area_map = area_map;
+      obj = type_initializer(obj_data);
+      debugger;
       this.load_element_properties(id, id_scheme, app_config, (function(_this) {
         return function(req) {
           return obj.DOMPropertiesList = req;
@@ -1017,9 +1034,12 @@ SchemeData = (function() {
   };
 
   SchemeData.prototype.load_data_from_server = function(app_config, area_map, on_success) {
-    var url;
+    var id_scheme, url;
     url = app_config.url_to_AJAX_load_properties;
-    return this.AJAX_query(url, "load_scheme", "", (function(_this) {
+    id_scheme = $(app_config.class_paint_scheme_form)[0].getAttribute('name').split('_')[1];
+    return this.AJAX_query(url, "load_scheme", {
+      scheme_id: id_scheme
+    }, (function(_this) {
       return function(res) {
         _this.add_from_AJAX_data(res.data, area_map, app_config);
         return on_success(res);
@@ -1111,7 +1131,7 @@ SchemeData = (function() {
 SchemeElement = (function() {
   SchemeElement.isMouseHover = false;
 
-  function SchemeElement(id, x, y, width, height, countOfConnections, image, border_color, area_map, DOMPropertiesList) {
+  function SchemeElement(id, x, y, width, height, countOfConnections, image, border_color, area_map, DOMPropertiesList, element_id) {
     this.id = id;
     this.x = x;
     this.y = y;
@@ -1122,6 +1142,7 @@ SchemeElement = (function() {
     this.border_color = border_color;
     this.area_map = area_map;
     this.DOMPropertiesList = DOMPropertiesList;
+    this.element_id = element_id;
     this.move = __bind(this.move, this);
     this.resize_right = __bind(this.resize_right, this);
     this.resize_left = __bind(this.resize_left, this);
@@ -1141,6 +1162,7 @@ SchemeElement = (function() {
     this.get_img_height = __bind(this.get_img_height, this);
     this.get_img_width = __bind(this.get_img_width, this);
     this.draw = __bind(this.draw, this);
+    this.from_database_data = __bind(this.from_database_data, this);
     this.to_database_data = __bind(this.to_database_data, this);
     this.offset_border_resizeble = 3;
     this.width = Math.round(this.width / this.area_map.step) * this.area_map.step;
@@ -1154,8 +1176,17 @@ SchemeElement = (function() {
       y: this.y,
       width: this.width,
       height: this.height,
-      CountOfConnections: this.CountOfConnections
+      color: this.border_color,
+      CountOfConnections: this.CountOfConnections,
+      element_id: this.element_id
     };
+  };
+
+  SchemeElement.prototype.from_database_data = function(data) {
+    var image;
+    image = document.createElement("IMG");
+    image.src = data.image;
+    return new SchemeElement(data.id, data.x, data.y, data.width, data.height, data.CountOfConnections, image, data.color, data.area_map, "", data.element_id);
   };
 
   SchemeElement.prototype.draw = function(ctx, color_on_hover) {
@@ -1385,14 +1416,26 @@ SchemeLine = (function() {
     this.is_bottom_resize = __bind(this.is_bottom_resize, this);
     this.is_top_resize = __bind(this.is_top_resize, this);
     this.get_color_by_mouse_hover = __bind(this.get_color_by_mouse_hover, this);
-    this.to_database_data = __bind(this.to_database_data, this);
     this.get_last_coord = __bind(this.get_last_coord, this);
     this.add_coord = __bind(this.add_coord, this);
     this.draw_path = __bind(this.draw_path, this);
     this.draw_shadow_circle = __bind(this.draw_shadow_circle, this);
     this.draw = __bind(this.draw, this);
+    this.from_database_data = __bind(this.from_database_data, this);
+    this.to_database_data = __bind(this.to_database_data, this);
     this.offset_border_resizeble = 3;
   }
+
+  SchemeLine.prototype.to_database_data = function() {
+    return {
+      coords: JSON.stringify(this.coords),
+      color: this.border_color
+    };
+  };
+
+  SchemeLine.prototype.from_database_data = function(data) {
+    return new SchemeLine(data.id, JSON.parse(data.coords), data.color, data.areaMap);
+  };
 
   SchemeLine.prototype.draw = function(ctx, color_on_hover) {
     var color;
@@ -1442,14 +1485,6 @@ SchemeLine = (function() {
     } else {
       return void 0;
     }
-  };
-
-  SchemeLine.prototype.to_database_data = function() {
-    return {
-      id: this.id,
-      coords: this.coords,
-      border_color: this.border_color
-    };
   };
 
   SchemeLine.prototype.get_color_by_mouse_hover = function(color, hover_color) {
