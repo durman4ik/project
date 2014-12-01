@@ -1,8 +1,12 @@
 .container
   .new_scheme
+    %p Введите название и описание схемы.
     = simple_form_for(@scheme, params[:scheme] => schemes_path, html: {role: 'form' }) do |f|
       = f.input  :title, class: "form-control"
-      = f.input  :description, as: :text 
-      = f.button :submit, method: :post
+      = f.input  :short_description, as: :text
+      = f.input  :description, as: :text
+      = f.input  :published, as: :radio_buttons, label: "Опубликована?"
+      %br
+      = f.submit "Перейти к изменению конструкции", method: :post
 %div
   = link_to t("welcome.back"), :back, class: "link back scheme"

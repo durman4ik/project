@@ -20,9 +20,12 @@ AppControl = (function() {
   }
 
   AppControl.prototype.init_draw_area = function() {
+    var input_color;
     this.draw_area = new DrawArea(this.app_config);
     this.area_map = new area_map(this.app_config.canvas_width, this.app_config.canvas_height, this.app_config.grid_step);
-    return $(this.app_config.class_paint_scheme_form).addClass('noselect');
+    $(this.app_config.class_paint_scheme_form).addClass('noselect');
+    input_color = $('#' + this.app_config.id_paint_form + ' ' + this.app_config.class_color_selector)[0];
+    return input_color.value = '#FFFFFF';
   };
 
   AppControl.prototype.drawing_buffered_grid = function() {
@@ -726,7 +729,7 @@ EventsHandlerInitializer = (function() {
     })(this));
     $((function(_this) {
       return function() {
-        return $(_this.app.app_config.classSchemeElementImage).draggable({
+        return $(_this.app.app_config.class_scheme_element_image).draggable({
           helper: "clone",
           start: function(e, ui) {
             _this.app.draw_area.dragingToSchemeElement = e.srcElement;
@@ -750,10 +753,10 @@ EventsHandlerInitializer = (function() {
             r = _this.app.area_map.get_rect_map_range(c.canvas_x, c.canvas_y, img.width, img.height);
             if (_this.app.area_map.is_empty_or_key_map_range(r.fromI, r.toI, r.fromJ, r.toJ, 'newElement')) {
               id_scheme = $(_this.app.app_config.class_paint_scheme_form)[0].getAttribute('name').split('_')[1];
-              id_element = img.name.split('_')[1];
+              id_element = img.getAttribute('name').split('_')[1];
               elem = new SchemeElement(newId, c.canvas_x, c.canvas_y, img.width, img.height, count_conn, img, color, _this.app.area_map, "", id_element);
               _this.app.schemeData.add(newId, SchemeElement, elem);
-              _this.app.schemeData.load_element_properties(newId, id_scheme, _this.app.app_config, function(res) {
+              _this.app.schemeData.load_element_properties(id_element, id_scheme, _this.app.app_config, function(res) {
                 return elem.DOMPropertiesList = res;
               });
               return _this.app.update_area();
@@ -814,13 +817,13 @@ EventsHandlerInitializer = (function() {
 })();
 
 this.app_config = {
-  classSchemeElementImage: '.scheme-element-image',
-  classSchemeElementProperties: 'scheme-element-properties',
-  classSchemeElementPropertiesBlock: 'properties-area',
-  classPropertyList: 'properties-list',
-  classUserElementName: 'user-element-name',
+  class_scheme_element_image: '.scheme-element-image',
+  class_scheme_element_properties: 'scheme-element-properties',
+  class_scheme_element_properties_block: 'properties-area',
+  class_property_list: 'properties-list',
+  class_user_element_name: 'user-element-name',
   classElementName: 'element-name',
-  classCountElementConnections: 'count-connections',
+  class_count_element_connections: 'count-connections',
   class_delete_button: 'delete-btn',
   class_move_button: 'move-btn',
   class_draw_line_button: 'draw-line-btn',
@@ -910,32 +913,32 @@ SchemeData = (function() {
   };
 
   SchemeData.prototype.remove_DOM_elem_of_properties = function(elem) {
-    return $('.' + app_config.classSchemeElementPropertiesBlock)[0].removeChild(elem);
+    return $('.' + app_config.class_scheme_element_properties_block)[0].removeChild(elem);
   };
 
   SchemeData.prototype.clear_list_properties = function() {
-    return $('.' + app_config.classSchemeElementPropertiesBlock)[0].innerHTML = '';
+    return $('.' + app_config.class_scheme_element_properties_block)[0].innerHTML = '';
   };
 
   SchemeData.prototype.add_from_AJAX_data = function(response_data, area_map, app_config) {
-    var i, id, id_scheme, obj, obj_data, type, type_initializer, _i, _ref, _results;
+    var i, id_scheme, obj, obj_data, type, type_initializer, _i, _ref, _results;
     _results = [];
     for (i = _i = 0, _ref = response_data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-      id = response_data[i].id;
       type = window[response_data[i].type];
       type_initializer = window[response_data[i].type].prototype.from_database_data;
       id_scheme = $(app_config.class_paint_scheme_form)[0].getAttribute('name').split('_')[1];
       obj_data = response_data[i].obj;
-      obj_data.id = id;
+      obj_data.id = this.get_new_id();
       obj_data.area_map = area_map;
       obj = type_initializer(obj_data);
-      debugger;
-      this.load_element_properties(id, id_scheme, app_config, (function(_this) {
-        return function(req) {
-          return obj.DOMPropertiesList = req;
-        };
-      })(this));
-      _results.push(this.add(id, type, obj));
+      if (obj_data.element_id) {
+        this.load_element_properties(obj_data.element_id, id_scheme, app_config, (function(_this) {
+          return function(req) {
+            return obj.DOMPropertiesList = req;
+          };
+        })(this));
+      }
+      _results.push(this.add(obj_data.id, type, obj));
     }
     return _results;
   };
@@ -983,18 +986,18 @@ SchemeData = (function() {
   SchemeData.prototype.properties_to_list_on_page = function(response, app_config) {
     var countConn, elementName, i, inp, item, label, li, list, userName, _i, _ref;
     item = document.createElement('div');
-    item.classList.add(app_config.classSchemeElementProperties);
+    item.classList.add(app_config.class_scheme_element_properties);
     userName = document.createElement('h3');
-    userName.classList.add(app_config.classUserElementName);
+    userName.classList.add(app_config.class_user_element_name);
     userName.innerHTML = response.data.userName;
     elementName = document.createElement('p');
     elementName.classList.add(app_config.classElementName);
     elementName.innerHTML = response.data.name;
     countConn = document.createElement('p');
-    countConn.classList.add(app_config.classCountElementConnections);
+    countConn.classList.add(app_config.class_count_element_connections);
     countConn.innerHTML = response.data.connections;
     list = document.createElement('ul');
-    list.classList.add(app_config.classPropertyList);
+    list.classList.add(app_config.class_property_list);
     for (i = _i = 0, _ref = response.data.properties.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
       li = document.createElement('li');
       label = document.createElement('label');
@@ -1012,7 +1015,7 @@ SchemeData = (function() {
     item.appendChild(elementName);
     item.appendChild(countConn);
     item.appendChild(list);
-    $('.' + app_config.classSchemeElementPropertiesBlock)[0].appendChild(item);
+    $('.' + app_config.class_scheme_element_properties_block)[0].appendChild(item);
     return item;
   };
 
@@ -1059,6 +1062,7 @@ SchemeData = (function() {
     return $.ajax({
       type: 'POST',
       url: url,
+      async: false,
       data: "query=" + query_name + "; data=" + JSON.stringify(data) + "; ",
       success: (function(_this) {
         return function(res) {

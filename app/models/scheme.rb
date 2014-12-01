@@ -63,8 +63,6 @@ class Scheme < ActiveRecord::Base
       x.destroy
     end
 
-    a_file = File.new("#{Rails.root}/public/scheme_image.png", "w+" )
-
     img = params["scheme_image"].gsub!(" ", "+")
     base64_image_string = StringIO.new(Base64.decode64(img))
     self.scheme_image = base64_image_string
@@ -96,16 +94,21 @@ class Scheme < ActiveRecord::Base
 
         @construction.parametrs << @parametr
       end
-binding.pry
+
       unless params["elements"][i]["obj_properties"].blank?
         @construction.parametrs << Parametr.new(:name => "image", :value => @construction.element.image.url(:thumb))
       end
+
       @construction.save do
         @construction.scheme_element_properties.create
         @construction.parametrs.create
       end
 
     end
+  end
+
+  def load_scheme(params)
+
   end
 
 end

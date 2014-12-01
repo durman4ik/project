@@ -213,7 +213,6 @@ DEPENDENCIES
   better_errors
   bootstrap-sass
   cancancan
-  cocaine
   coffee-rails (~> 4.0.0)
   devise
   execjs

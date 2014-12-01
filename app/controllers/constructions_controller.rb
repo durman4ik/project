@@ -9,6 +9,7 @@ class ConstructionsController < InheritedResources::Base
   def foo
     
     if params[:query] == 'load_properties'
+
       scheme_params = JSON.parse (params[:data])
 
       @element = Element.find(scheme_params["element_id"])
@@ -33,8 +34,8 @@ class ConstructionsController < InheritedResources::Base
 
     if params[:query] == 'load_scheme'
 
-      #scheme_params = JSON.parse (params[:data])
-      @scheme = Scheme.find(47)
+      scheme_params = JSON.parse (params[:data])
+      @scheme = Scheme.find(scheme_params["scheme_id"])
 
       @objects = []
 
@@ -63,9 +64,8 @@ class ConstructionsController < InheritedResources::Base
       @scheme_id = scheme_params["scheme_id"]
       @scheme = Scheme.find(@scheme_id)
       
-      if @scheme.saving_scheme(scheme_params)
-        render :json => { :answer => "сохранено"}
-      end
+      @scheme.saving_scheme(scheme_params)
+      render :json => { :answer => "сохранено"}
           
     end
 

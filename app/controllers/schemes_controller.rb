@@ -31,6 +31,9 @@ class SchemesController < InheritedResources::Base
 	end
 
 	def update
+		@scheme.update(scheme_params)
+		redirect_to new_scheme_construction_path(@scheme)
+
 		unless params[:published].nil?
 			@scheme.published = true
 			@scheme.save

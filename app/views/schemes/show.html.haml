@@ -1,11 +1,19 @@
 .container
-  %h3= @scheme.title
-  %p= markdown(@scheme.description)
-  %p Рейтинг: #{@scheme.rating}
-  -if user_can_voted?
-    =render "rating_form"
-  -else 
-    = "Вы поставили #{current_user_rating}"
+  .show-scheme-block
+    = image_tag @scheme.scheme_image.url(:original)
+    %p Рейтинг: #{@scheme.rating}
+    -if user_can_voted?
+      =render "rating_form"
+    -else 
+      = "Вы поставили #{current_user_rating}"
+    %h3 
+    Название:
+    = @scheme.title
+    %br
+    Описание: 
+    = markdown(@scheme.description)
+    
+
 
   .edit-link-in-show
     -if can? :edit, @scheme
@@ -26,8 +34,6 @@
     =render "comments/new"
 
 =render "home/back_link"
-
-
 
 
 - content_for(:scripts) do

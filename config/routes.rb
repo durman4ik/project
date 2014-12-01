@@ -5,11 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:session, :password, :registration, :confirmation], 
               controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
- post "ajax" => "constructions#foo", as: :foo
+  post "ajax" => "constructions#foo", as: :foo
 
   scope "(:locale)", locale: /ru|en/ do
-
-    
 
     root to: "home#index"
 
@@ -31,12 +29,9 @@ Rails.application.routes.draw do
     
     resources :schemes  do
       resources :comments
-      resources :constructions
+      resources :constructions, only: :new
     end  
-    resources :ratings
-    resources :elements
-    resources :properties
-
+    resources :ratings, :elements, :properties
 
     get "search" => "schemes#search", as: :search
 

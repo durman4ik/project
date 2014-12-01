@@ -13,6 +13,6 @@
           .delete-comment-link
             -if can_delete_comment?(comment)
               %span.delete-comment-btn
-                =image_tag asset_path("icon_comment_delete.png")
+                =image_tag "icon_comment_delete.png"
         .comment-body
           =comment.body

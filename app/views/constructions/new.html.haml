@@ -4,30 +4,31 @@
   #1.paint-scheme-form{:name => "scheme_#{@scheme.id}"}
     .flexRow
       .tool-panel
+
         %div Панель инструментов
-        %img.btn-custom.draw-line-btn{:src => asset_path('buttons/line.png')}/
-        %img.btn-custom.change-color-btn{:src => asset_path('buttons/paint.png')}/
-        %input.color-selector.btn-custom{:type => "color"}/
-        %img.btn-custom.delete-btn{:src => asset_path('buttons/trash.png')}/
-        %img.btn-custom.move-btn{:src => asset_path('buttons/move.png')}/
-        %img.btn-custom.load-button{:src => asset_path('buttons/back.png')}/
-        %img.btn-custom.save-button{:src => asset_path('buttons/save.png')}/
+        .flexRow
+          %img.btn-custom.draw-line-btn{:src => asset_path('buttons/line.png')}/
+          %img.btn-custom.change-color-btn{:src => asset_path('buttons/paint.png')}/
+          %input.color-selector.btn-custom{:type => "color"}/
+          %img.btn-custom.delete-btn{:src => asset_path('buttons/trash.png')}/
+          %img.btn-custom.move-btn{:src => asset_path('buttons/move.png')}/
+          %img.btn-custom.load-button{:src => asset_path('buttons/back.png')}/
+          %img.btn-custom.save-button{:src => asset_path('buttons/save.png')}/
     .flexRow
       .property-block
         %h2.menu-header Свойства элементов
         .properties-area
       %canvas#canvas
-      %div.users
-        .list_scheme-element
-          %h2.menu-header Доступные элементы
-          - @elements.each do |element|
-            .scheme-element
-              %img.scheme-element-image{:draggable => "true", :src => element.image.url, :name => "element_#{element.id}"}/
-              %span.scheme-element-name= element.title
-              %span.scheme-element-count-inputs
-                Соединений:
-                %span.counter= element.num_inputs
-    .description-scheme
+      .list_scheme-element
+        %h2.menu-header Доступные элементы
+        - @elements.each do |element|
+          .scheme-element
+            %img.scheme-element-image{:draggable => "true", :src => element.image.url, :name => "element_#{element.id}"}/
+            %span.scheme-element-name= element.title
+            %span.scheme-element-count-inputs
+              Соединений:
+              %span.counter= element.num_inputs
+    = link_to "Закончить редактирование схемы", scheme_path(@scheme), class: "btn"
 
 - content_for(:scripts) do
   = javascript_include_tag "SchemeDesigner"
